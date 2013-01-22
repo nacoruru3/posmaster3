@@ -1,0 +1,29 @@
+<h1>Listing currents</h1>
+
+<table border="1">
+  <tr>
+    <th>Currency</th>
+    <th>Code</th>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @currents.each do |current| %>
+  <tr>
+    <td><%= current.currency %></td>
+    <td><%= current.code %></td>
+    <td><%= current.name %></td>
+    <td><%= link_to 'Show', current %></td>
+    <td><%= link_to 'Edit', edit_current_path(current) %></td>
+    <td><%= link_to 'Destroy', current, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Current', new_current_path %>
+</br>
+<%= link_to "ログアウト", destroy_user_session_path, :method => 'delete' %>
