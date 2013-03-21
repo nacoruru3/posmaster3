@@ -1,4 +1,22 @@
 Posmaster::Application.routes.draw do
+  resources :orders
+
+
+  resources :salesmeis
+
+
+  resources :salesheads
+
+
+  resources :tokuis
+
+
+  resources :zaikos
+
+
+  resources :items
+
+
   root :to => "home#index"
   get "home/index"
   devise_for :users
@@ -6,7 +24,20 @@ Posmaster::Application.routes.draw do
   resources :currents
 
   post 'record/post' => 'record#post'
+  post 'record/itempost' => 'record#itempost'
   get 'record/list' => 'record#list'
+  post 'record/zaikopost' => 'record#zaikopost'
+  get 'record/hasone' => 'record#hasone'
+  get 'record/belongs' => 'record#belongs'
+  post 'record/tokuipost' => 'record#tokuipost'
+  post 'record/salesheadpost' => 'record#salesheadpost'
+  post 'record/salesmeipost' => 'record#salesmeipost'
+  get 'record/rireki/:id' => 'record#rireki'
+  get 'record/rirekitest/' => 'record#rirekitest'
+  post 'record/orderpost' => 'record#orderpost'
+  get 'record/searchitem/:id' => 'record#searchitem'
+  get 'record/ordersheet/:id' => 'record#ordersheet'
+  get 'record/delorder/:id' => 'record#delorder'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

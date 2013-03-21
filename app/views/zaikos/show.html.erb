@@ -1,0 +1,22 @@
+<p id="notice"></p>
+
+
+
+<p>
+  <b>Name:</b>
+  <%= @zaiko.name %>
+</p>
+
+<p>
+  <b>Code:</b>
+  <%= @zaiko.code %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @zaiko.value %>
+</p>
+
+
+<%= link_to 'Edit', edit_zaiko_path(@zaiko) %> |
+<%= link_to 'Back', zaikos_path %>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  billno: MyString
+  saleshead: 
+  itemcode: MyString
+  item: 
+  value: 1
+  itemprice: 1
+
+two:
+  billno: MyString
+  saleshead: 
+  itemcode: MyString
+  item: 
+  value: 1
+  itemprice: 1

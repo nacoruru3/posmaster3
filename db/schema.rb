@@ -11,12 +11,68 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130121094938) do
+ActiveRecord::Schema.define(:version => 20130203102902) do
 
   create_table "currents", :force => true do |t|
     t.string   "currency"
     t.string   "code"
     t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "items", :force => true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.integer  "price"
+    t.integer  "price2"
+    t.integer  "price3"
+    t.integer  "price4"
+    t.string   "sho1bun"
+    t.string   "kban"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "items", ["code"], :name => "codeindex"
+
+  create_table "orders", :force => true do |t|
+    t.integer  "sheet"
+    t.string   "code"
+    t.string   "name"
+    t.integer  "price"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "salesheads", :force => true do |t|
+    t.string   "billno"
+    t.integer  "price"
+    t.string   "date"
+    t.string   "custno"
+    t.integer  "tokui_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "salesmeis", :force => true do |t|
+    t.string   "billno"
+    t.integer  "saleshead_id"
+    t.string   "itemcode"
+    t.integer  "item_id"
+    t.integer  "value"
+    t.integer  "itemprice"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "salesmeis", ["item_id"], :name => "index_salesmeis_on_item_id"
+  add_index "salesmeis", ["saleshead_id"], :name => "index_salesmeis_on_saleshead_id"
+
+  create_table "tokuis", :force => true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.string   "tokui1bun"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -38,5 +94,16 @@ ActiveRecord::Schema.define(:version => 20130121094938) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "zaikos", :force => true do |t|
+    t.integer  "item_id"
+    t.string   "name"
+    t.string   "code"
+    t.integer  "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "zaikos", ["item_id"], :name => "index_zaikos_on_item_id"
 
 end

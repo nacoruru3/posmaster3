@@ -1,7 +1,7 @@
 # coding: utf-8
 class CurrentsController < ApplicationController
 
-	before_filter :authenticate_user!
+	#before_filter :authenticate_user!
   # GET /currents
   # GET /currents.json
   def index
