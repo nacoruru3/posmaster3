@@ -24,7 +24,7 @@ before_filter :authenticate_user!
   
   def act1
   	username = current_user.username
-    send_file("public/docs/#{username}/menu.xml")
+    send_file("public/docs/#{username}/DayEnd.txt")
   end
   
   def upfile
@@ -33,7 +33,7 @@ before_filter :authenticate_user!
      end
      username = current_user.username
      
-     File.write("public/docs/#{username}/DayEnd.txt", $ss)
+     File.write("public/docs/#{username}/DayEnd.txt")
   	  render :text => '1'
   end
 end
