@@ -1,30 +1,31 @@
-<p id="notice"><%= notice %></p>
+<h1>Listing salesheads <%= $salesday %></h1>
+<CAPTION><%= link_to '当該日明細一覧', { :controller => 'salesheads' ,:action => 'serchmei' ,:id => $salesday } %></CAPTION>
 
-<p>
-  <b>Billno:</b>
-  <%= @saleshead.billno %>
-</p>
+<table border="1">
+  <tr>
+    <th>Billno</th>
+    <th>Price</th>
+    <th>Date</th>
+    <th>Custno</th>
+    <th>Tokui</th>
+    <th></th>
+    <th></th>
+  </tr>
 
-<p>
-  <b>Price:</b>
-  <%= @saleshead.price %>
-</p>
+<% @salesheads.each do |saleshead| %>
+  <tr>
+    <td><%= link_to saleshead.billno, { :controller => 'salesmeis' ,:action => 'show' ,:id => saleshead.billno } %></td>
+    <td align="right"><%= saleshead.price %>円</td>
+    <td><%= saleshead.date %></td>
+    <td><%= saleshead.custno %></td>
+    <td><%= saleshead.tokui_id %></td>
+    <td><%= link_to 'Show', saleshead %></td>
+    <td><%= link_to 'Edit', edit_saleshead_path(saleshead) %></td>
+<!--    <td><%= link_to 'Destroy', saleshead, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+  </tr>
+<% end %>
+</table>
 
-<p>
-  <b>Date:</b>
-  <%= @saleshead.date %>
-</p>
+<br />
 
-<p>
-  <b>Custno:</b>
-  <%= @saleshead.custno %>
-</p>
-
-<p>
-  <b>Tokui:</b>
-  <%= @saleshead.tokui_id %>
-</p>
-
-
-<%= link_to 'Edit', edit_saleshead_path(@saleshead) %> |
-<%= link_to 'Back', salesheads_path %>
+<%= link_to 'New Saleshead', new_saleshead_path %>

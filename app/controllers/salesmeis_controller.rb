@@ -2,7 +2,19 @@ class SalesmeisController < ApplicationController
   # GET /salesmeis
   # GET /salesmeis.json
   def index
-    @salesmeis = Salesmei.all
+    #@salesmeis = Salesmei.all
+    @Salesmei = Salesmei.find(:all,:include => [:item])
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @salesmeis }
+    end
+  end
+  
+  def show
+    # GET /salesmeis/1
+  # GET /salesmeis/1.json
+    @Salesmei = Salesmei.find(:all,:conditions => { :billno => params[:id]})
 
     respond_to do |format|
       format.html # index.html.erb
@@ -12,14 +24,14 @@ class SalesmeisController < ApplicationController
 
   # GET /salesmeis/1
   # GET /salesmeis/1.json
-  def show
-    @salesmei = Salesmei.find(params[:id])
+#  def show
+#    @salesmei = Salesmei.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @salesmei }
-    end
-  end
+#    respond_to do |format|
+#      format.html # show.html.erb
+#      format.json { render json: @salesmei }
+#    end
+#  end
 
   # GET /salesmeis/new
   # GET /salesmeis/new.json

@@ -1,4 +1,7 @@
 Posmaster::Application.routes.draw do
+  resources :sho1buns
+
+
   resources :orders
 
 
@@ -19,8 +22,8 @@ Posmaster::Application.routes.draw do
 
   root :to => "home#index"
   get "home/index"
-  devise_for :users
-
+  #devise_for :users
+  devise_for :users, :path_names => { :sign_up => "register" } 
   resources :currents
 
   post 'record/post' => 'record#post'
@@ -30,6 +33,7 @@ Posmaster::Application.routes.draw do
   get 'record/hasone' => 'record#hasone'
   get 'record/belongs' => 'record#belongs'
   post 'record/tokuipost' => 'record#tokuipost'
+  post 'record/sho1bunpost' => 'record#sho1bunpost'
   post 'record/salesheadpost' => 'record#salesheadpost'
   post 'record/salesmeipost' => 'record#salesmeipost'
   get 'record/rireki/:id' => 'record#rireki'
@@ -38,6 +42,10 @@ Posmaster::Application.routes.draw do
   get 'record/searchitem/:id' => 'record#searchitem'
   get 'record/ordersheet/:id' => 'record#ordersheet'
   get 'record/delorder/:id' => 'record#delorder'
+  get 'authentication_token/show' => 'authentication_token#show'
+  get 'authentication_token/auth' => 'authentication_token#auth'
+  get 'authentication_token/user' => 'authentication_token#user'
+  post 'ctrl/upfile' => 'ctrl#upfile'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -93,5 +101,5 @@ Posmaster::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+  match ':controller(/:action(/:id))(.:format)'
 end

@@ -9,7 +9,8 @@ class CreateItems < ActiveRecord::Migration
       t.integer :price4
       t.string :sho1bun
       t.string :kban
-
+      t.integer :user_id
+      
       t.timestamps
     end
   end

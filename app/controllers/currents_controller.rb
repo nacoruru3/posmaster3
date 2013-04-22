@@ -5,7 +5,7 @@ class CurrentsController < ApplicationController
   # GET /currents
   # GET /currents.json
   def index
-    @currents = Current.all
+    @currents = current_user.currents.all
 
     respond_to do |format|
       format.html # index.html.erb

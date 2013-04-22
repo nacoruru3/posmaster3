@@ -10,6 +10,7 @@
     <th>Price4</th>
     <th>Sho1bun</th>
     <th>Kban</th>
+    <th>User</th>
     <th></th>
   </tr>
 <% i=0 %>
@@ -23,6 +24,7 @@
     <td><%= item.price4 %></td>
     <td><%= item.sho1bun %></td>
     <td><%= item.kban %></td>
+    <td><%= item.user_id %></td>
     <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% i=i+1 %>

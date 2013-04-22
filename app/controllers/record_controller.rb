@@ -1,8 +1,9 @@
 class RecordController < ApplicationController
+	before_filter :authenticate_user!
 	def post
 		Current.transaction do
-    	currents = Current.destroy_all
-    	#@current= Current.new(params[:currerncy])
+    	#currents = Current.destroy_all
+    	currents = Current.destroy_all(['user_id = ?',current_user.id])
     	
     	params[:currency].each do |currency|
     	@current = Current.new
@@ -12,6 +13,7 @@ class RecordController < ApplicationController
   		@current.code = currency["Code"]
   		p currency["Name"]
   		@current.name = currency["Name"]
+  		@current.user_id = current_user.id
   		@current.save!    	
   		end  
   	  end
@@ -21,8 +23,12 @@ class RecordController < ApplicationController
     end
     
     def itempost
-	   Item.transaction do
-    	items = Item.destroy_all
+    	Item.transaction do
+    	
+	    items = Item.destroy_all(['user_id = ?',current_user.id])
+	   		
+    	#Item.transaction do
+    	#items = Item.destroy_all
     	params[:item].each do |item|
     	@item = Item.new
   		@item.name = item["Name"]
@@ -34,24 +40,14 @@ class RecordController < ApplicationController
   		@item.sho1bun = item["Sho1bun"]
   		@item.kban = item["Kban"]
   		if item["Name"] != "EEEE" then
+  		@item.user_id = current_user.id
   		@item.save!
   		end
-  		#@item = Item.where(:code => zaiko["Code"]).select('id')
-  		@zaikoid = Zaiko.where(:code => item["Code"]).select('id')
-  		@zaikoid.each do |zaikoid|
-    	  @zaiko=Zaiko.find(zaikoid.id)
-    	  @itemid = Item.where(:code => item["Code"]).select('id')
-    	  @itemid.each do |itemid|
-    	   @zaiko.item_id = itemid.id
-    	  end
-    	  @zaiko.save
-    	 end
   	    end  
-  	  end
   	  render :text => '1'
-  	  rescue
-  	  
-    end
+  	 end
+  	 rescue
+  	end
     
     def zaikopost
 	   Zaiko.transaction do
@@ -77,14 +73,36 @@ class RecordController < ApplicationController
     
     def tokuipost
 	   Tokui.transaction do
-    	tokuis = Tokui.destroy_all
+    	#tokuis = Tokui.destroy_all
+	    tokuis = Tokui.destroy_all(['user_id = ?',current_user.id])
+	    
     	params[:tokui].each do |tokui|
     	 @tokui = Tokui.new
   		 @tokui.name = tokui["Name"]
   		 @tokui.code = tokui["Code"]
   		 @tokui.tokui1bun = tokui["Tokui1bun"]
   		 if tokui["Name"] != "EEEE" then
+  		 @tokui.user_id = current_user.id
   		  @tokui.save!
+  		 end
+  	    end  
+  	  end
+  	  render :text => '1'
+  	  rescue
+  	  
+    end
+    
+    def sho1bunpost
+	   Sho1bun.transaction do
+    	#sho1buns = Sho1bun.destroy_all
+	    sho1buns = Sho1bun.destroy_all(['user_id = ?',current_user.id])
+    	params[:Bunrui].each do |sho1bun|
+    	 @sho1bun = Sho1bun.new
+  		 @sho1bun.name = sho1bun["Name"]
+  		 @sho1bun.code = sho1bun["Code"]
+  		 if sho1bun["Name"] != "EEEE" then
+  		 @sho1bun.user_id = current_user.id
+  		  @sho1bun.save!
   		 end
   	    end  
   	  end
@@ -105,6 +123,8 @@ class RecordController < ApplicationController
   		 @tokui.each do |tokui|
     	  @saleshead.tokui_id = tokui.id
     	 end
+    	 @saleshead.user_id = current_user.id
+    	 @saleshead.flg = true
   		 @saleshead.save!
   	    end  
   	  end
@@ -136,6 +156,9 @@ class RecordController < ApplicationController
   		 #@zaiko.save
   		 @salesmei.value = salesmei["Value"]
   		 @salesmei.itemprice = salesmei["Itemprice"]
+  		 @salesmei.itemname = salesmei["Itemname"]
+  		 @salesmei.user_id = current_user.id
+  		 @salesmei.flg = true
   		  @salesmei.save!
   		 end
   	    end  

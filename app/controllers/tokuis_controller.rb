@@ -2,7 +2,7 @@ class TokuisController < ApplicationController
   # GET /tokuis
   # GET /tokuis.json
   def index
-    @tokuis = Tokui.all
+    @tokuis = current_user.tokuis.all
 
     respond_to do |format|
       format.html # index.html.erb

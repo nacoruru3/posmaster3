@@ -1,35 +1,30 @@
-<p id="notice"><%= notice %></p>
+<h1>Listing salesmeis</h1>
 
-<p>
-  <b>Billno:</b>
-  <%= @salesmei.billno %>
-</p>
+<table border="1">
+  <tr>
+    <th>Billno</th>
+    <th>Itemcode</th>
+    <th>Itemname</th>
+    <th>Value</th>
+    <th>Itemprice</th>
+    <th></th>
+    <th></th>
+  </tr>
 
-<p>
-  <b>Saleshead:</b>
-  <%= @salesmei.saleshead %>
-</p>
+<% @Salesmei.each do |salesmei| %>
+  <tr>
+    <td><%= salesmei.billno %></td>
+    <td><%= salesmei.itemcode %></td>
+    <td><%= salesmei.itemname %></td>
+    <td><%= salesmei.value %></td>
+     <td align="right"><%= salesmei.itemprice %>円</td>
+<!--    <td><%= link_to 'Show', salesmei %></td> -->
+    <td><%= link_to 'Edit', edit_salesmei_path(salesmei) %></td>
+    <td><%= link_to 'Destroy', salesmei, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
 
-<p>
-  <b>Itemcode:</b>
-  <%= @salesmei.itemcode %>
-</p>
+<br />
 
-<p>
-  <b>Item:</b>
-  <%= @salesmei.item %>
-</p>
-
-<p>
-  <b>Value:</b>
-  <%= @salesmei.value %>
-</p>
-
-<p>
-  <b>Itemprice:</b>
-  <%= @salesmei.itemprice %>
-</p>
-
-
-<%= link_to 'Edit', edit_salesmei_path(@salesmei) %> |
-<%= link_to 'Back', salesmeis_path %>
+<%= link_to '売上伝票一覧', salesheads_path %>

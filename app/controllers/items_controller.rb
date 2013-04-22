@@ -14,7 +14,8 @@ class ItemsController < ApplicationController
      #@Zvalue.push(0)
      #end
     #end
-    @items = Item.all
+    #@items = Item.all
+    @items = current_user.items.all
     respond_to do |format|
     
       format.html # index.html.erb

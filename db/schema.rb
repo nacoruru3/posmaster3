@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130203102902) do
+ActiveRecord::Schema.define(:version => 20130409042418) do
 
   create_table "currents", :force => true do |t|
     t.string   "currency"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20130203102902) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "items", :force => true do |t|
@@ -30,11 +31,10 @@ ActiveRecord::Schema.define(:version => 20130203102902) do
     t.integer  "price4"
     t.string   "sho1bun"
     t.string   "kban"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  add_index "items", ["code"], :name => "codeindex"
 
   create_table "orders", :force => true do |t|
     t.integer  "sheet"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(:version => 20130203102902) do
     t.integer  "tokui_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.boolean  "flg"
   end
 
   create_table "salesmeis", :force => true do |t|
@@ -64,10 +66,21 @@ ActiveRecord::Schema.define(:version => 20130203102902) do
     t.integer  "itemprice"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "user_id"
+    t.boolean  "flg"
+    t.string   "itemname"
   end
 
   add_index "salesmeis", ["item_id"], :name => "index_salesmeis_on_item_id"
   add_index "salesmeis", ["saleshead_id"], :name => "index_salesmeis_on_saleshead_id"
+
+  create_table "sho1buns", :force => true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+  end
 
   create_table "tokuis", :force => true do |t|
     t.string   "code"
@@ -75,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20130203102902) do
     t.string   "tokui1bun"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|
@@ -90,6 +104,8 @@ ActiveRecord::Schema.define(:version => 20130203102902) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "username"
+    t.string   "authentication_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

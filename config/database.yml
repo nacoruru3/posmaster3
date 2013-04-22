@@ -15,7 +15,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: posmaster3_development
+  database: posmaster_development
   pool: 5
   username: nacoruru3
   password: jet31415
@@ -41,7 +41,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: posmaster3_test
+  database: posmaste_test
   pool: 5
   username: nacoruru3
   password: jet31415
@@ -49,7 +49,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: posmaster3_production
+  database: posmaster_production
   pool: 5
   username: testuser
   password: nomore532
