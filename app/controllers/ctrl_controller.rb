@@ -27,6 +27,11 @@ before_filter :authenticate_user!
     send_file("public/docs/#{username}/DayEnd.txt")
   end
   
+    def act2
+  	username = current_user.username
+    send_file("public/docs/#{username}/DayEndN.txt")
+  end
+  
   def upfile
      params[:text].each do |text|
      $ss = text['text']
