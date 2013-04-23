@@ -22,7 +22,7 @@ before_filter :authenticate_user!
    render :text => result
   end
   
-  def act1
+  def act3
   	username = current_user.username
     send_file("public/docs/#{username}/DayEnd.txt")
   end
@@ -30,6 +30,11 @@ before_filter :authenticate_user!
   def act2
   	username = current_user.username
     send_file("public/docs/#{username}/DayEndN.txt")
+  end
+  
+  def act1
+  	username = current_user.username
+    send_file("public/docs/#{username}/menu.xml")
   end
   
   def upfile
