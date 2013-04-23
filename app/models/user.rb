@@ -12,4 +12,6 @@ class User < ActiveRecord::Base
   has_many :currents
   has_many :tokuis
   has_many :sho1buns
+  has_many :salesheads
+  has_many :salesmeis
 end

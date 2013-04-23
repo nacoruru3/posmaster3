@@ -3,7 +3,7 @@ before_filter :authenticate_user!
   # GET /salesheads
   # GET /salesheads.json
   def index
-    @salesheads = Saleshead.find(:all,:order => "billno DESC" )
+    @salesheads = current_user.salesheads.find(:all,:order => "billno DESC" )
     #@salesheads = Saleshead.where(:custno => 1001)
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +14,7 @@ before_filter :authenticate_user!
   # GET /salesheads/1
   # GET /salesheads/1.json
   def show
-   @salesheads = Saleshead.find(:all, :conditions => ["Date like ?", params[:id]+"%"])
+   @salesheads = current_user.salesheads.find(:all, :conditions => ["Date like ?", params[:id]+"%"])
    $salesday=params[:id]
    
     respond_to do |format|
@@ -24,13 +24,13 @@ before_filter :authenticate_user!
   end
 ######################################
 def serchmei
-   @salesheads = Saleshead.find(:all, :conditions => ["Date like ?", params[:id]+"%"])
+   @salesheads = current_user.salesheads.find(:all, :conditions => ["Date like ?", params[:id]+"%"])
    #@Salesmei=Salesmei.find(:all,:conditions => { :billno => [@salesheads[0].billno ,@salesheads[1].billno]}) 
    @salesbillno=[]
    @salesheads.each do |saleshead|
 	   @salesbillno.push(saleshead.billno)
    end
-   @Salesmei=Salesmei.find(:all,:conditions => { :billno => [@salesbillno]})
+   @Salesmei=current_user.salesmei.find(:all,:conditions => { :billno => [@salesbillno]})
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @salesheads }

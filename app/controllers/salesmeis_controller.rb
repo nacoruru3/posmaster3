@@ -3,7 +3,7 @@ class SalesmeisController < ApplicationController
   # GET /salesmeis.json
   def index
     #@salesmeis = Salesmei.all
-    @Salesmei = Salesmei.find(:all,:include => [:item])
+    @Salesmei = current_user.salesmeis.find(:all,:include => [:item])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +14,7 @@ class SalesmeisController < ApplicationController
   def show
     # GET /salesmeis/1
   # GET /salesmeis/1.json
-    @Salesmei = Salesmei.find(:all,:conditions => { :billno => params[:id]})
+    @Salesmei = current_user.salesmeis.find(:all,:conditions => { :billno => params[:id]})
 
     respond_to do |format|
       format.html # index.html.erb

@@ -27,7 +27,7 @@ before_filter :authenticate_user!
     send_file("public/docs/#{username}/DayEnd.txt")
   end
   
-    def act2
+  def act2
   	username = current_user.username
     send_file("public/docs/#{username}/DayEndN.txt")
   end
@@ -38,7 +38,7 @@ before_filter :authenticate_user!
      end
      username = current_user.username
      
-     File.write("public/docs/#{username}/DayEnd.txt")
+     File.write("public/docs/#{username}/DayEnd.txt", $ss)
   	  render :text => '1'
   end
 end
