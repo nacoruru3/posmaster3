@@ -30,7 +30,7 @@ def serchmei
    @salesheads.each do |saleshead|
 	   @salesbillno.push(saleshead.billno)
    end
-   @Salesmei=current_user.salesmei.find(:all,:conditions => { :billno => [@salesbillno]})
+   @Salesmei=current_user.salesmeis.find(:all,:conditions => { :billno => [@salesbillno]})
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @salesheads }
