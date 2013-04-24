@@ -191,12 +191,18 @@ class RecordController < ApplicationController
     end
     
     def rireki
-     @salesheads = Saleshead.where(:custno => params[:id])
+     @salesheads = current_user.salesheads.where(:custno => params[:id])
+     #@salesheads = current_user.salesheads.find(:all,:conditions => { :billno => params[:id]})
     #@salesheads = Saleshead.where(:custno => 1001)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @salesheads }
     end
+    end
+    
+    def delsaleshead
+      cnt = current_user.salesheads.update_all('flg = false',['billno = ?',params[:id]])
+      render :text => 1
     end
     
     def rirekitest
