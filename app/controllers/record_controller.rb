@@ -81,6 +81,9 @@ class RecordController < ApplicationController
   		 @tokui.name = tokui["Name"]
   		 @tokui.code = tokui["Code"]
   		 @tokui.tokui1bun = tokui["Tokui1bun"]
+  		 @tokui.tel = tokui["Tel"]
+  		 @tokui.kake = tokui["Kake"]
+  		 @tokui.tankakubun = tokui["Tankakubun"]
   		 if tokui["Name"] != "EEEE" then
   		 @tokui.user_id = current_user.id
   		  @tokui.save!
@@ -202,6 +205,7 @@ class RecordController < ApplicationController
     
     def delsaleshead
       cnt = current_user.salesheads.update_all('flg = false',['billno = ?',params[:id]])
+      cnt = current_user.salesmeis.update_all('flg = false',['billno = ?',params[:id]])
       render :text => 1
     end
     
