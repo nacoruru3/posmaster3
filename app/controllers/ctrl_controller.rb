@@ -22,6 +22,10 @@ before_filter :authenticate_user!
    render :text => result
   end
   
+  def act4
+  	render :text => 1
+  end
+  
   def act3
   	username = current_user.username
     send_file("public/docs/#{username}/DayEnd.txt")
