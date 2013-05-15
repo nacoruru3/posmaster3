@@ -49,6 +49,8 @@ Posmaster::Application.routes.draw do
   get 'record/delsaleshead/:id' => 'record#delsaleshead'
   get 'record/salesheadshow/:id/:id2' => 'record#salesheadshow'
   get 'salesmeis/show/:id/:id2' => 'salesmeis#show'
+  get 'ctrl/act2/:id' => 'ctrl#act2'
+  get 'ctrl/act3/:id' => 'ctrl#act3'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

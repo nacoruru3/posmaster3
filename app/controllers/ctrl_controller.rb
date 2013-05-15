@@ -30,12 +30,14 @@ before_filter :authenticate_user!
   
   def act3
   	username = current_user.username
-    send_file("public/docs/#{username}/DayEnd.txt")
+  	outlet = params[:id]
+    send_file("public/docs/#{username}/#{outlet}/DayEnd.txt")
   end
   
   def act2
   	username = current_user.username
-    send_file("public/docs/#{username}/DayEndN.txt")
+  	outlet = params[:id]
+    send_file("public/docs/#{username}/#{outlet}/DayEndN.txt")
   end
   
   def act1
