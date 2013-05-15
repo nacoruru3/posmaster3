@@ -119,9 +119,22 @@ class RecordController < ApplicationController
     	params[:saleshead].each do |saleshead|
     	 @saleshead = Saleshead.new
   		 @saleshead.billno = saleshead["Billno"]
+  		 @saleshead.eda = saleshead["Eda"]
+  		 @saleshead.outlet = saleshead["Outlet"]
   		 @saleshead.price = saleshead["Price"]
   		 @saleshead.date = saleshead["Date"]
   		 @saleshead.custno = saleshead["Custno"]
+  		 @saleshead.tax = saleshead["Tax"]
+  		 @saleshead.currency1 = saleshead["Currency1"]
+  		 @saleshead.currency2 = saleshead["Currency2"]
+  		 @saleshead.currency3 = saleshead["Currency3"]
+  		 @saleshead.currency4 = saleshead["Currency4"]
+  		 @saleshead.price1 = saleshead["Price1"]
+  		 @saleshead.price2 = saleshead["Price2"]
+  		 @saleshead.price3 = saleshead["Price3"]
+  		 @saleshead.price4 = saleshead["Price4"]
+  		 @saleshead.change = saleshead["Change"]
+
   		 @tokui = Tokui.where(:code => saleshead["Custno"]).select('id')
   		 @tokui.each do |tokui|
     	  @saleshead.tokui_id = tokui.id
@@ -141,6 +154,7 @@ class RecordController < ApplicationController
     	params[:salesmei].each do |salesmei|
     	 @salesmei = Salesmei.new
   		 @salesmei.billno = salesmei["Billno"]
+  		 @salesmei.outlet = salesmei["Outlet"]
   		 if salesmei["Billno"] != "EEEE" then
   		 @saleshead = Saleshead.where(:billno => salesmei["Billno"]).select('id')
   		 @saleshead.each do |saleshead|
@@ -194,7 +208,8 @@ class RecordController < ApplicationController
     end
     
     def rireki
-     @salesheads = current_user.salesheads.where(:custno => params[:id])
+     #@salesheads = current_user.salesheads.where(:custno => params[:id])
+     @salesheads = current_user.salesheads.where('custno = ? AND flg = ?',params[:id],'true')
      #@salesheads = current_user.salesheads.find(:all,:conditions => { :billno => params[:id]})
     #@salesheads = Saleshead.where(:custno => 1001)
     respond_to do |format|
@@ -209,12 +224,14 @@ class RecordController < ApplicationController
       render :text => 1
     end
     
-    def rirekitest
-     @salesheads = Saleshead.where(:custno => 1001)
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @salesheads }
-    end
+    def salesheadshow
+    @salesheads = current_user.salesheads.find(:all,:conditions => ["billno = ? and outlet = ?", params[:id] ,params[:id2]])
+   # Page.find(:all, :conditions => ["category_id = ? and url_id = ?", 1, 1])
+   
+     respond_to do |format|
+       format.html # index.html.erb
+       format.json { render json: @salesheads }
+     end
     end
     
     def delorder

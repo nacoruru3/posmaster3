@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425035557) do
+ActiveRecord::Schema.define(:version => 20130514030704) do
 
   create_table "currents", :force => true do |t|
     t.string   "currency"
@@ -55,6 +55,18 @@ ActiveRecord::Schema.define(:version => 20130425035557) do
     t.datetime "updated_at", :null => false
     t.integer  "user_id"
     t.boolean  "flg"
+    t.integer  "tax"
+    t.string   "currency1"
+    t.integer  "price1"
+    t.string   "currency2"
+    t.integer  "price2"
+    t.string   "currency3"
+    t.integer  "price3"
+    t.string   "currency4"
+    t.integer  "price4"
+    t.integer  "change"
+    t.integer  "eda"
+    t.string   "outlet"
   end
 
   create_table "salesmeis", :force => true do |t|
@@ -69,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20130425035557) do
     t.integer  "user_id"
     t.boolean  "flg"
     t.string   "itemname"
+    t.string   "outlet"
   end
 
   add_index "salesmeis", ["item_id"], :name => "index_salesmeis_on_item_id"

@@ -4,10 +4,23 @@
 <table border="1">
   <tr>
     <th>Billno</th>
+    <th>Eda</th>
+    <th>Outlet</th>
     <th>Price</th>
+    <th>Tax</th>
     <th>Date</th>
     <th>Custno</th>
+    <th>Currency1</th>
+    <th>Price1</th>
+    <th>Currency2</th>
+    <th>Price2</th>
+    <th>Currency3</th>
+    <th>Price3</th>
+    <th>Currency4</th>
+    <th>Price4</th>
+    <th>Change</th>
     <th>Tokui</th>
+    <th>Flg</th>
     <th></th>
     <th></th>
   </tr>
@@ -15,10 +28,23 @@
 <% @salesheads.each do |saleshead| %>
   <tr>
     <td><%= link_to saleshead.billno, { :controller => 'salesmeis' ,:action => 'show' ,:id => saleshead.billno } %></td>
+    <td><%= saleshead.eda %></td>
+    <td><%= saleshead.outlet %></td>
     <td align="right"><%= saleshead.price %>円</td>
+    <td align="right"><%= saleshead.tax %>円</td>
     <td><%= saleshead.date %></td>
     <td><%= saleshead.custno %></td>
+    <td><%= saleshead.currency1 %></td>
+    <td><%= saleshead.price1 %></td>
+    <td><%= saleshead.currency2 %></td>
+    <td><%= saleshead.price2 %></td>
+    <td><%= saleshead.currency3 %></td>
+    <td><%= saleshead.price3 %></td>
+    <td><%= saleshead.currency4 %></td>
+    <td><%= saleshead.price4 %></td>
+    <td><%= saleshead.change %></td>
     <td><%= saleshead.tokui_id %></td>
+    <td><%= saleshead.flg %></td>
     <td><%= link_to 'Show', saleshead %></td>
     <td><%= link_to 'Edit', edit_saleshead_path(saleshead) %></td>
 <!--    <td><%= link_to 'Destroy', saleshead, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->

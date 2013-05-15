@@ -14,9 +14,11 @@ before_filter :authenticate_user!
    #else 
     name = name.kconv(Kconv::SJIS, Kconv::UTF8)
     username = current_user.username
-    path = "public/docs"
+    outlet = params[:id]
+    path = "public/docs/"
+    FileUtils.mkdir_p("public/docs/#{username}/#{outlet}") unless File.exist?("/public/docs/#{username}/#{outlet}")
     #File.open("public/docs/#{name}", 'wb') { |f| f.write(file.read) }
-    File.open("#{path}/#{username}/#{name}", 'wb') { |f| f.write(file.read) }
+    File.open("#{path}/#{username}/#{outlet}/#{name}", 'wb') { |f| f.write(file.read) }
     result = "#{name.toutf8}をアップロードしました。"
    #end
    render :text => result

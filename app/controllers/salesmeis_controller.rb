@@ -1,4 +1,5 @@
 class SalesmeisController < ApplicationController
+before_filter :authenticate_user!
   # GET /salesmeis
   # GET /salesmeis.json
   def index
@@ -7,18 +8,18 @@ class SalesmeisController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @salesmeis }
+      format.json { render json: @Salesmei }
     end
   end
   
   def show
     # GET /salesmeis/1
   # GET /salesmeis/1.json
-    @Salesmei = current_user.salesmeis.find(:all,:conditions => { :billno => params[:id]})
+    @Salesmei = current_user.salesmeis.find(:all,:conditions => ["billno = ? and outlet = ?", params[:id] ,params[:id2]])
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @salesmeis }
+      format.json { render json: @Salesmei }
     end
   end
 
