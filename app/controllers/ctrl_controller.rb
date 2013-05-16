@@ -42,7 +42,7 @@ before_filter :authenticate_user!
   
   def act1
   	username = current_user.username
-    send_file("public/docs/#{username}/menu.xml")
+    send_file("public/docs/#{username}/000/menu.xml")
   end
   
   def upfile
