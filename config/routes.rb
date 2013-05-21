@@ -28,6 +28,7 @@ Posmaster::Application.routes.draw do
 
   post 'record/post' => 'record#post'
   post 'record/itempost' => 'record#itempost'
+  post 'record/itempost2' => 'record#itempost2'
   get 'record/list' => 'record#list'
   post 'record/zaikopost' => 'record#zaikopost'
   get 'record/hasone' => 'record#hasone'

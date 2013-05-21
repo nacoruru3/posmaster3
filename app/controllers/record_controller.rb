@@ -49,6 +49,32 @@ class RecordController < ApplicationController
   	 rescue
   	end
     
+     def itempost2
+    	Item.transaction do
+    	
+	   		
+    	#Item.transaction do
+    	#items = Item.destroy_all
+    	params[:item].each do |item|
+    	@item = Item.new
+  		@item.name = item["Name"]
+  		@item.code = item["Code"]
+  		@item.price = item["Price"]
+  		@item.price2 = item["Price2"]
+  		@item.price3 = item["Price3"]
+  		@item.price4 = item["Price4"]
+  		@item.sho1bun = item["Sho1bun"]
+  		@item.kban = item["Kban"]
+  		if item["Name"] != "EEEE" then
+  		@item.user_id = current_user.id
+  		@item.save!
+  		end
+  	    end  
+  	  render :text => '1'
+  	 end
+  	 rescue
+  	end
+    
     def zaikopost
 	   Zaiko.transaction do
     	zaikos = Zaiko.destroy_all
