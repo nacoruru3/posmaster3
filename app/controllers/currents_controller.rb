@@ -44,6 +44,7 @@ class CurrentsController < ApplicationController
   # POST /currents.json
   def create
     @current = Current.new(params[:current])
+    @current.user_id = current_user.id
 
     respond_to do |format|
       if @current.save
