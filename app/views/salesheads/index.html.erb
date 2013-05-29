@@ -32,7 +32,12 @@
     <td align="right"><%= saleshead.price %>円</td>
     <td align="right"><%= saleshead.tax %>円</td>
     <td><%= link_to saleshead.date, { :controller => 'salesheads' ,:action => 'show' ,:id =>  saleshead.date[0,7] } %></td>
+    <% @tokui = current_user.tokuis.find(:first,:conditions => {:code => saleshead.custno}) %>
+    <% unless @tokui.nil? %>
+    <td><%= link_to @tokui.name, { :controller => 'record' ,:action => 'rireki' ,:id =>  saleshead.custno } %></td>
+    <% else %>>
     <td><%= link_to saleshead.custno, { :controller => 'record' ,:action => 'rireki' ,:id =>  saleshead.custno } %></td>
+     <% end %>
     <td><%= saleshead.currency1 %></td>
     <td align="right"><%= saleshead.price1 %>円</td>
     <td><%= saleshead.currency2 %></td>

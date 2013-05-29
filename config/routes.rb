@@ -47,6 +47,7 @@ Posmaster::Application.routes.draw do
   get 'authentication_token/auth' => 'authentication_token#auth'
   get 'authentication_token/user' => 'authentication_token#user'
   post 'ctrl/upfile/:id' => 'ctrl#upfile'
+  post 'ctrl/upload_process/:id/:id2' => 'ctrl#upload_process'
   get 'record/delsaleshead/:id' => 'record#delsaleshead'
   get 'record/salesheadshow/:id/:id2' => 'record#salesheadshow'
   get 'salesmeis/show/:id/:id2' => 'salesmeis#show'
