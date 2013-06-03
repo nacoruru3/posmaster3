@@ -160,7 +160,6 @@ class RecordController < ApplicationController
   		 @saleshead.price3 = saleshead["Price3"]
   		 @saleshead.price4 = saleshead["Price4"]
   		 @saleshead.change = saleshead["Change"]
-
   		 @tokui = Tokui.where(:code => saleshead["Custno"]).select('id')
   		 @tokui.each do |tokui|
     	  @saleshead.tokui_id = tokui.id
