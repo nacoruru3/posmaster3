@@ -37,7 +37,17 @@ def serchmei
     end
   end
 ######################################  
-  
+def serchdayoutlet
+   @salesheads = current_user.salesheads.find(:all, :conditions => ["Date like ? and outlet = ?" , params[:id]+"%",params[:id2]])
+   $salesday=params[:id]
+   $outlet=params[:id2]
+   
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @salesheads }
+    end
+  end
+######################################  
 
   # GET /salesheads/new
   # GET /salesheads/new.json
@@ -59,7 +69,11 @@ def serchmei
   # POST /salesheads.json
   def create
     @saleshead = Saleshead.new(params[:saleshead])
-
+    if @saleshead.billno[0,1] == '3'
+    @saleshead.outlet = '002'
+    else
+    @saleshead.outlet = '003'
+    end
     respond_to do |format|
       if @saleshead.save
         format.html { redirect_to @saleshead, notice: 'Saleshead was successfully created.' }
