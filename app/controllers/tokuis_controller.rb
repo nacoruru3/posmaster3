@@ -41,6 +41,7 @@ class TokuisController < ApplicationController
   # POST /tokuis.json
   def create
     @tokui = Tokui.new(params[:tokui])
+    @tokui.user_id = current_user.id
 
     respond_to do |format|
       if @tokui.save
