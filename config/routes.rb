@@ -53,7 +53,6 @@ Posmaster::Application.routes.draw do
   get 'salesmeis/show/:id/:id2' => 'salesmeis#show'
   get 'ctrl/act2/:id' => 'ctrl#act2'
   get 'ctrl/act3/:id' => 'ctrl#act3'
-  get 'salesheads/serchdayoutlet/:id/:id2' => 'salesheads#serchdayoutlet'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
