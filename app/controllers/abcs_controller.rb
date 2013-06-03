@@ -5,7 +5,7 @@ class AbcsController < ApplicationController
   def index
   	abcs = Abc.destroy_all(['user_id = ?',current_user.id])
 
-  	@items = Item.all
+  	@items = current_user.items.all
     @items.each do |item|
      # @salesmei = current_user.salesmeis.find(:all,:conditions => ["itemcode = ? and flg = ? and Date like ?", item.code ,'true',params[:id]+"%"])
       @salesmei = current_user.salesmeis.find(:all,:conditions => ["itemcode = ? and flg = ?", item.code ,'true'])
@@ -26,7 +26,7 @@ class AbcsController < ApplicationController
        end
       end    	
     end
-    @abcs = Abc.all
+    @abcs = Abc.find(:all, :conditions => ["user_id = ?",current_user.id])
 
     respond_to do |format|
       format.html # index.html.erb
