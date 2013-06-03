@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Code:</b>
+  <%= @abc.code %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @abc.name %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @abc.value %>
+</p>
+
+
+<%= link_to 'Edit', edit_abc_path(@abc) %> |
+<%= link_to 'Back', abcs_path %>

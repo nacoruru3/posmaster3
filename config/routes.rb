@@ -1,4 +1,7 @@
 Posmaster::Application.routes.draw do
+  resources :abcs
+
+
   resources :sho1buns
 
 
@@ -54,6 +57,7 @@ Posmaster::Application.routes.draw do
   get 'ctrl/act2/:id' => 'ctrl#act2'
   get 'ctrl/act3/:id' => 'ctrl#act3'
   get 'salesheads/serchdayoutlet/:id/:id2' => 'salesheads#serchdayoutlet'
+  get 'abcs/index/:id' => 'abcs#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
