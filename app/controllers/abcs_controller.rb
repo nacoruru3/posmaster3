@@ -30,7 +30,8 @@ class AbcsController < ApplicationController
        end
       end    	
     end
-    @abcs = Abc.find(:all, :conditions => ["user_id = ?",current_user.id])
+   # @abcs = Abc.find(:all, :conditions => ["user_id = ?",current_user.id])
+   @abcs = current_user.abcs.all
 
     respond_to do |format|
       format.html # index.html.erb

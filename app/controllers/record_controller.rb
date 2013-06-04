@@ -234,8 +234,8 @@ class RecordController < ApplicationController
     
     def rireki
      #@salesheads = current_user.salesheads.where(:custno => params[:id])
-     @salesheads = current_user.salesheads.where('custno = ? AND flg = ?',params[:id],'true')
-     #@salesheads = current_user.salesheads.find(:all,:conditions => { :billno => params[:id]})
+     #@salesheads = current_user.salesheads.where('custno = ? AND flg = ?',params[:id],'true')
+     @salesheads = current_user.salesheads.find(:all,:conditions => ["custno = ? and flg = ?", params[:id] ,'true'], :order => "billno DESC")
     #@salesheads = Saleshead.where(:custno => 1001)
     respond_to do |format|
       format.html # index.html.erb
