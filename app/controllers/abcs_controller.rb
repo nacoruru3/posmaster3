@@ -4,7 +4,7 @@ class AbcsController < ApplicationController
   # GET /abcs.json
   def index
   	abcs = Abc.destroy_all(['user_id = ?',current_user.id])
-
+  	$date = params[:id]
   	@items = current_user.items.all
     @items.each do |item|
      # @salesmei = current_user.salesmeis.find(:all,:conditions => ["itemcode = ? and flg = ? and Date like ?", item.code ,'true',params[:id]+"%"])
