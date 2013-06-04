@@ -14,4 +14,5 @@ class User < ActiveRecord::Base
   has_many :sho1buns
   has_many :salesheads
   has_many :salesmeis
+  has_many :abcs
 end
