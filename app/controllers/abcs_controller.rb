@@ -16,9 +16,13 @@ class AbcsController < ApplicationController
        @abc.value = 0
        @abc.user_id = current_user.id
       @salesmei.each do |salesmei|
-      @salesheads = current_user.salesheads.find(:all, :conditions => ["Date like ? and billno = ?", params[:id]+"%",salesmei.billno])
+      @salesheads = current_user.salesheads.find(:all, :conditions => ["billno = ?",salesmei.billno])
       unless @salesheads.nil?
-        @abc.value = @abc.value + salesmei.value
+      @salesheads.each do |saleshead|
+      	if saleshead.date[0,8] == params[:id]
+         @abc.value = @abc.value + salesmei.value
+        end
+      end
       end
       end
        if @abc.value != 0
