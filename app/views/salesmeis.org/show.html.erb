@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Billno:</b>
+  <%= @salesmei.billno %>
+</p>
+
+<p>
+  <b>Saleshead:</b>
+  <%= @salesmei.saleshead %>
+</p>
+
+<p>
+  <b>Itemcode:</b>
+  <%= @salesmei.itemcode %>
+</p>
+
+<p>
+  <b>Item:</b>
+  <%= @salesmei.item %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @salesmei.value %>
+</p>
+
+<p>
+  <b>Itemprice:</b>
+  <%= @salesmei.itemprice %>
+</p>
+
+
+<%= link_to 'Edit', edit_salesmei_path(@salesmei) %> |
+<%= link_to 'Back', salesmeis_path %>

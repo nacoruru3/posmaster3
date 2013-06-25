@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Billno:</b>
+  <%= @saleshead.billno %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @saleshead.price %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @saleshead.date %>
+</p>
+
+<p>
+  <b>Custno:</b>
+  <%= @saleshead.custno %>
+</p>
+
+<p>
+  <b>Tokui:</b>
+  <%= @saleshead.tokui_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_saleshead_path(@saleshead) %> |
+<%= link_to 'Back', salesheads_path %>

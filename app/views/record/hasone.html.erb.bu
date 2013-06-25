@@ -1,0 +1,8 @@
+<ul>
+<% @Zaiko.each do |zaiko| %>
+<li><%= zaiko.value  %></li>
+<% unless zaiko.item.nil? %>
+<li><%= zaiko.item.name %></li>
+<% end %>
+<% end %>
+</ul>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  sheet: 1
+  code: MyString
+  name: MyString
+  price: 1
+
+two:
+  sheet: 1
+  code: MyString
+  name: MyString
+  price: 1

@@ -1,0 +1,34 @@
+<h1>在庫一覧</h1>
+
+<table border="1">
+  <tr>
+    <th>品名</th>
+    <th>原価</th>
+    <th>規格型番</th>
+    <th>在庫数</th>
+    <th></th>
+  </tr>
+<% @Zaiko.each do |zaiko| %>
+  <tr>
+    <% $item = current_user.items.find(:first,:conditions => {:code => zaiko.code}) %>
+    <% unless $item.nil? %>
+     <td><%= link_to $item.name, { :controller => 'items' ,:action => 'show' ,:code =>  zaiko.code } %></td>
+     <td align="right">0円</td>
+     <td><%= $item.kban %></td>
+    <% else %>
+     <td><%= link_to zaiko.code %></td>
+     <td align="right">0円</td>
+     <td></td>
+    <% end %>
+    <td><input type="text" style="text-align:right" value=<%= zaiko.value %>></td>
+    <td><%= link_to 'Edit', edit_zaiko_path(zaiko) %></td>
+<!--    <td><%= link_to 'Destroy', zaiko, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Zaiko', new_zaiko_path %>
+</br>
+<%= link_to "ログアウト", destroy_user_session_path, :method => 'delete' %>
