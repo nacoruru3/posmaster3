@@ -9,6 +9,7 @@
     <th>Price3</th>
     <th>Price4</th>
     <th>Cost</th>
+    <th>Zaiko</th>
     <th>Sho1bun</th>
     <th>Kban</th>
     <th>User</th>
@@ -24,6 +25,12 @@
     <td><%= item.price3 %></td>
     <td><%= item.price4 %></td>
     <td><%= item.cost %></td>
+    <% $zaiko = current_user.zaikos.find(:first,:conditions => {:code => item.code}) %>
+    <% unless $zaiko.nil? %>
+    <td><%= $zaiko.value %> </td>
+    <% else %>
+    <td> 0 </td>
+    <% end %>
     <td><%= item.sho1bun %></td>
     <td><%= item.kban %></td>
     <td><%= item.user_id %></td>
