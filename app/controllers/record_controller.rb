@@ -123,19 +123,6 @@ class RecordController < ApplicationController
   	  
     end
     
-    def zaikoedit
-    	Zaiko.transaction do
-    	params[:zaiko].each do |zaiko|
-    	 @zaikos = current_user.zaikos.find(:first,:conditions => ["code = ?",zaiko["Code"]])
-    	 unless @zaikos.nil?
-    	 	
-    	 	
-    	 end
-		end
-  	  render :text => '1'
-  	  rescue
-    end
-    
     
     def tokuipost
 	   Tokui.transaction do
