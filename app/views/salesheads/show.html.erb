@@ -52,7 +52,7 @@
     <% else %>
     <% if saleshead.currency1 == '1' %>
     <td>現金</td>
-    <% cash = saleshead.price1 + cash %>
+    <% cash = saleshead.price1 - saleshead.change + cash %>
     <% else %>
     <td><%= saleshead.currency1 %></td>
     <% end %>

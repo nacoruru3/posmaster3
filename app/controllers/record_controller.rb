@@ -40,9 +40,10 @@ class RecordController < ApplicationController
   		@item.price4 = item["Price4"]
   		@item.sho1bun = item["Sho1bun"]
   		@item.kban = item["Kban"]
+  		@item.cost = item["Cost"]
   		if item["Name"] != "EEEE" then
-  		@item.user_id = current_user.id
-  		@item.save!
+  		  @item.user_id = current_user.id
+  		  @item.save!
   		end
   	    end  
   	  render :text => '1'
@@ -66,6 +67,7 @@ class RecordController < ApplicationController
   		@item.price4 = item["Price4"]
   		@item.sho1bun = item["Sho1bun"]
   		@item.kban = item["Kban"]
+  		@item.cost = item["Cost"]
   		if item["Name"] != "EEEE" then
   		@item.user_id = current_user.id
   		@item.save!
@@ -84,7 +86,7 @@ class RecordController < ApplicationController
     	 #p @zaikos.value - 0
     	 #p zaiko["value"].to_i - 0
     	 
-  		  if zaiko["Name"] != "EEEE" then
+  		  if zaiko["Code"] != "EEEE" then
   		    @zaikolog = ZaikoLog.new
             @zaikolog.code = zaiko["Code"]
             #@zaikolog.value = 0
@@ -103,7 +105,7 @@ class RecordController < ApplicationController
   		  @zaiko.user_id = current_user.id
   		  @zaiko.code = zaiko["Code"]
   		  @zaiko.value = zaiko["Value"]
-  		   if zaiko["Name"] != "EEEE" then
+  		   if zaiko["Code"] != "EEEE" then
   		   	@zaikolog = ZaikoLog.new
             @zaikolog.code = zaiko["Code"]
             @zaikolog.value = zaiko["Value"]
@@ -120,6 +122,20 @@ class RecordController < ApplicationController
   	  rescue
   	  
     end
+    
+    def zaikoedit
+    	Zaiko.transaction do
+    	params[:zaiko].each do |zaiko|
+    	 @zaikos = current_user.zaikos.find(:first,:conditions => ["code = ?",zaiko["Code"]])
+    	 unless @zaikos.nil?
+    	 	
+    	 	
+    	 end
+		end
+  	  render :text => '1'
+  	  rescue
+    end
+    
     
     def tokuipost
 	   Tokui.transaction do
