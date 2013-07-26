@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130627032409) do
+ActiveRecord::Schema.define(:version => 20130702103751) do
 
   create_table "abcs", :force => true do |t|
     t.string   "code"
@@ -135,10 +135,18 @@ ActiveRecord::Schema.define(:version => 20130627032409) do
     t.datetime "updated_at",                             :null => false
     t.string   "username"
     t.string   "authentication_token"
+    t.integer  "instance"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "uuid_userids", :force => true do |t|
+    t.string   "uuid"
+    t.string   "userid"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "zaiko_logs", :force => true do |t|
     t.string   "code"

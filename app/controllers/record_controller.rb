@@ -123,6 +123,37 @@ class RecordController < ApplicationController
   	  
     end
     
+    def zaikotranpost
+    	Zaiko.transaction do
+    	 params[:zaikotran].each do |zaikotran|
+    	    @zaikos = current_user.zaikos.find(:first,:conditions => ["code = ?",zaikotran["Code"]])
+    	    unless @zaikos.nil?
+    	     if zaikotran["Code"] != "EEEE" then
+    	     	case
+    	     	 when zaikotran["Kubun"] = 1
+    	     	 when zaikotran["Kubun"] = 2
+    	     	 when zaikotran["Kubun"] = 3
+    	     	 	@zaikolog = ZaikoLog.new
+			 	 	@zaikolog.code = zaikotran["Code"]
+			 	 	@zaikolog.value = zaikotran["Value"]
+			 	 	@zaikolog.flg = true
+			 	 	@zaikolog.user_id = current_user.id
+			 	 	@zaikolog.kubun = 3 #通常区分 1 出庫 2 仕入れ 3 入庫 4 返品 5 棚卸し 6
+			 	 	@zaikolog.save!
+    	     	 	@zaiko.value = @zaikos.value + zaikotran["Value"].to_i
+    	     	 	@zaiko.save!
+    	     	 	
+    	     	 when zaikotran["Kubun"] = 4
+    	     	
+    	     	end
+    	     end
+    	    else
+    	     
+    	    end
+    	 end
+    	end
+    end
+    
     
     def tokuipost
 	   Tokui.transaction do

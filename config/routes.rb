@@ -1,4 +1,7 @@
 Posmaster::Application.routes.draw do
+  resources :uuid_userids
+
+
   resources :zaiko_logs
 
 
