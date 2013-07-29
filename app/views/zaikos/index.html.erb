@@ -13,7 +13,7 @@
   <tr>
     <% $item = current_user.items.find(:first,:conditions => {:code => zaiko.code}) %>
     <% unless $item.nil? %>
-     <td><%= link_to $item.name, { :controller => 'items' ,:action => 'show' ,:code =>  zaiko.code } %></td>
+     <td><%= link_to $item.name, edit_zaiko_path(zaiko)%></td>
      <td align="right"><%= $item.cost %>円</td>
      <td><%= $item.kban %></td>
     <td><input type="text" style="text-align:right" value=<%= zaiko.value %>></td>

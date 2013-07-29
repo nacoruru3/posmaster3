@@ -17,8 +17,8 @@ before_filter :authenticate_user!
   # GET /zaikos/1
   # GET /zaikos/1.json
   def show
-    @zaiko = Zaiko.find(params[:id])
-
+    #@zaiko = Zaiko.find(params[:id])
+	@zaiko = current_user.zaikos.find(:first,:conditions => ["code = ?",params[:code]])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @zaiko }
