@@ -1,5 +1,11 @@
 <h1>Listing salesheads</h1>
 
+<%= form_tag('/salesheads/serchhead/id1/id2', :method => :get) do %>
+期間集計<br>From:<%= text_field_tag "date1" ,params[:date1], :class => 'datepicker' %>
+To:<%= text_field_tag "date2" ,params[:date2], :class => 'datepicker' %>
+<%= submit_tag "集計" %></p>
+<% end %>
+
 <table border="1">
   <tr>
     <th>Billno</th>
@@ -80,5 +86,4 @@
 </table>
 
 <br />
-<%= link_to 'abc集計', { :controller => 'abcs' ,:action => 'index' ,:id =>  '99999999' } %></br>
-<%= link_to 'New Saleshead', new_saleshead_path %>
+<%= link_to 'abc集計', { :controller => 'abcs' ,:action => 'index' ,:id =>  '99999999'} ,:class=>'btn btn-primary' %></br>

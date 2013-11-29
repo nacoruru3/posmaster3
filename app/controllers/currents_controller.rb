@@ -7,10 +7,10 @@ class CurrentsController < ApplicationController
   def index
     @currents = current_user.currents.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @currents }
-    end
+    # respond_to do |format|
+#       format.html # index.html.erb
+#       format.json { render json: @currents }
+#     end
   end
 
   # GET /currents/1
