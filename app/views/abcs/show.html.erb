@@ -1,33 +1,20 @@
-<h1>abc分析表 <%= $date1 %>〜<%= $date2%></h1>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Code:</b>
+  <%= @abc.code %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @abc.name %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @abc.value %>
+</p>
 
 
-<table border="1">
-  <tr>
-    <th>Code</th>
-    <th>Name</th>
-    <th>Value</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @abcs.each do |abc| %>
-  <tr>
-    <td><%= abc.code %></td>
-    <td><%= abc.name %></td>
-    <td><%= abc.value %></td>
-    <td><%= link_to 'Show', abc %></td>
-    <td><%= link_to 'Edit', edit_abc_path(abc) %></td>
-    <td><%= link_to 'Destroy', abc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-<br />
-
-<%= form_tag('/abcs/show', :method => :get) do %>
-期間指定:From<br><%= text_field_tag "date1" ,params[:date1], :class => 'datepicker' %>
-To:<%= text_field_tag "date2" ,params[:date2], :class => 'datepicker' %>
-<%= submit_tag "検索" %></p>
-<% end %>
-</br>
-<%= link_to 'New Abc', new_abc_path %>
+<%= link_to 'Edit', edit_abc_path(@abc) %> |
+<%= link_to 'Back', abcs_path %>
