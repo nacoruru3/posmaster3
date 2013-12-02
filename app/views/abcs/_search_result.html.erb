@@ -1,6 +1,4 @@
-<h1>abc分析表 <%= $date1 %>〜<%= $date2%></h1>
-
-
+<ul>
 <table border="1">
   <tr>
     <th>Code</th>
@@ -22,12 +20,4 @@
   </tr>
 <% end %>
 </table>
-<br />
-
-<%= form_tag('/abcs/show', :method => :get) do %>
-期間指定:From<br><%= text_field_tag "date1" ,params[:date1], :class => 'datepicker' %>
-To:<%= text_field_tag "date2" ,params[:date2], :class => 'datepicker' %>
-<%= submit_tag "検索" %></p>
-<% end %>
-</br>
-<%= link_to 'New Abc', new_abc_path %>
+</ul>

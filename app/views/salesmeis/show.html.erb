@@ -7,6 +7,7 @@
     <th>Itemname</th>
     <th>Value</th>
     <th>Itemprice</th>
+    <th>Zaiko</th>
     <th>Flg</th>
     <th></th>
     <th></th>
@@ -22,6 +23,12 @@
     <% value = salesmei.value + value %>
     <td align="right"><%= salesmei.itemprice %>円</td>
     <% price = (salesmei.itemprice * salesmei.value) + price  %>
+    <% @zaiko = current_user.zaikos.find(:first,:conditions => {:code => salesmei.itemcode}) %>
+    <% unless @zaiko.nil? %>
+    <td><%= @zaiko.value %></td>
+    <% else %>
+    <td>0</td>
+    <% end %>
     <td><%= salesmei.flg %></td>
 <!--    <td><%= link_to 'Show', salesmei %></td> -->
     <td><%= link_to 'Edit', edit_salesmei_path(salesmei) %></td>

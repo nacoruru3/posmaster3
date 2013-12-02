@@ -48,6 +48,20 @@ before_filter :authenticate_user!
     send_file("public/docs/#{username}/000/menu.xml")
   end
   
+  def act5
+  	username = current_user.username
+  	outlet = params[:id]
+  	day = params[:id2]
+    send_file("public/docs/#{username}/#{outlet}/#{day}/DayEnd.txt")
+  end
+  
+  def act6
+  	username = current_user.username
+  	outlet = params[:id]
+  	day = params[:id2]
+    send_file("public/docs/#{username}/#{outlet}/#{day}/DayEndN.txt")
+  end
+  
   def upfile
      params[:text].each do |text|
      $ss = text['text']
@@ -55,6 +69,7 @@ before_filter :authenticate_user!
      username = current_user.username
      
      File.write("public/docs/#{username}/DayEnd.txt", $ss)
-  	  render :text => '1'
+  	 render :text => '1'
   end
+  
 end
