@@ -36,10 +36,6 @@ def serchmei
       format.json { render json: @salesheads }
     end
   end
-######################################
-def serchhead
-
-end
 ######################################  
 def serchdayoutlet
    @salesheads = current_user.salesheads.find(:all, :conditions => ["Date like ? and outlet = ?" , params[:id]+"%",params[:id2]])
