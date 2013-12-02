@@ -1,0 +1,21 @@
+<h1>メインメニュー</h1>
+<% if user_signed_in? %>
+<p>ようこそ <%= $username %>さん</p>
+<%= link_to '金種一覧', currents_path %>
+<br/>
+<%= link_to 'アイテム一覧', items_path %>
+</br>
+<%= link_to '売上伝票', salesheads_path %>
+</br>
+<%= link_to '在庫一覧', zaikos_path %>
+</br>
+</br>
+ <%= link_to "ログアウト", destroy_user_session_path, :method => 'delete' %>
+</br>
+ <%= link_to "ユーザ情報の編集", edit_user_registration_path %>
+<% else %>
+ <%= link_to "ログイン", new_user_session_path %>
+<!--
+ <%= link_to "登録", new_user_registration_path %>
+ -->
+<% end %>
