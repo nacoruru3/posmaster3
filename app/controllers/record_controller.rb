@@ -77,7 +77,6 @@ class RecordController < ApplicationController
   	 end
   	 rescue
   	end
-  	
     
     def zaikopost
 	   Zaiko.transaction do
@@ -124,16 +123,7 @@ class RecordController < ApplicationController
   	  
     end
     
-    def zaikotrnhtml
-     $token = current_user.token
-     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @item }
-     end
-      
-    end
-    
-    # def zaikotranpost
+    def zaikotranpost
     	Zaiko.transaction do
     	 params[:zaikotran].each do |zaikotran|
     	    @zaikos = current_user.zaikos.find(:first,:conditions => ["code = ?",zaikotran["Code"]])
@@ -144,13 +134,13 @@ class RecordController < ApplicationController
     	     	 when zaikotran["Kubun"] = 2
     	     	 when zaikotran["Kubun"] = 3
     	     	 	@zaikolog = ZaikoLog.new
-			 	 	@zaikolog.code = zaikotran["code"]
-			 	 	@zaikolog.value = zaikotran["value"]
+			 	 	@zaikolog.code = zaikotran["Code"]
+			 	 	@zaikolog.value = zaikotran["Value"]
 			 	 	@zaikolog.flg = true
 			 	 	@zaikolog.user_id = current_user.id
 			 	 	@zaikolog.kubun = 3 #通常区分 1 出庫 2 仕入れ 3 入庫 4 返品 5 棚卸し 6
 			 	 	@zaikolog.save!
-    	     	 	@zaiko.value = @zaikos.value + zaikotran["value"].to_i
+    	     	 	@zaiko.value = @zaikos.value + zaikotran["Value"].to_i
     	     	 	@zaiko.save!
     	     	 	
     	     	 when zaikotran["Kubun"] = 4
@@ -158,45 +148,12 @@ class RecordController < ApplicationController
     	     	end
     	     end
     	    else
-    	    @zaiko = Zaiko.new
-			@zaiko.user_id = current_user.id
-			@zaiko.code = zaiko["Code"]
-			@zaiko.value = zaiko["Value"]
-			if zaiko["Code"] != "EEEE" then
-  		   		@zaikolog = ZaikoLog.new
-  		   		@zaikolog.code = zaiko["Code"]
-  		   		@zaikolog.value = zaiko["Value"]
-  		   		@zaikolog.flg = true
-  		   		@zaikolog.user_id = current_user.id
-  		   		@zaikolog.kubun = 6 #通常区分 1 出庫 2 仕入れ 3 入庫 4 返品 5 棚卸し 6
-  		   		@zaikolog.save!
-  		   		@zaiko.save!
-  		   end
-    	    
     	     
     	    end
     	 end
     	end
     end
-
-#    def zaikotranpost
-#    	   	@zaiko = current_user.zaikos.find(:first,:conditions => ["code = ?",params[:code]])
-#    	   	Zaiko.transaction do
-#    	   	unless @zaiko.nil?
-#    	   		@zaikolog = ZaikoLog.new
-#  			@zaikolog.code = params[:code] 
-#  			@zaikolog.value = params[:value]
-#  			@zaikolog.flg = true
-#  			@zaikolog.user_id = current_user.id
-#  			@zaikolog.kubun = 3 #通常区分 1 出庫 2 仕入れ 3 入庫 4 返品 5 棚卸し 6
-#  			@zaikolog.save!
-#      	    @zaiko.value = @zaiko.value + params[:value].to_i
-#      	    @zaiko.save!
-# 	    end
-# 	    end
-# 	    render :text => '1'
-# 	    rescue
-#    end  
+    
     
     def tokuipost
 	   Tokui.transaction do
