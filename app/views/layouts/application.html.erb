@@ -15,8 +15,6 @@
     <%= stylesheet_link_tag "application", :media => "all" %>
 
     <!-- For third-generation iPad with high-resolution Retina display: -->
-    <!-- Size should be 144 x 144 pixels -->
-    
 
     <%= javascript_include_tag "application" %>
   </head>
@@ -30,12 +28,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Posmaster</a>
+          <a class="brand" href="/">Posmaster</a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <li><%= link_to "帳票一覧", "/home/list"  %></li>
+              <li><%= link_to "マスタメンテナンス", "/master"  %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -47,10 +44,15 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <li class="nav-header">メニュー一覧</li>
+              <li><%= link_to '金種一覧', currents_path ,{ :remote => true } %></li>
+              <li><%= link_to 'アイテム一覧', items_path ,{ :remote => true }  %></li>
+              <li><%= link_to '売上伝票', salesheads_path ,{ :remote => true }  %></li>
+              <li><%= link_to '在庫一覧', zaikos_path ,{ :remote => true }  %></li>
+              <li><%= link_to 'abc分析表',{ :controller => 'abcs' ,:action => 'index' ,:id => '99999999' } ,{ :remote => true } %></li>
+              <br></br>
+              <li><%= link_to "ログアウト", destroy_user_session_path, :method => 'delete' %></li>
+              <li><%= link_to "ユーザ情報の編集", edit_user_registration_path %></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -61,7 +63,7 @@
       </div><!--/row-->
 
       <footer>
-        <p>&copy; Company 2013</p>
+        <p>&copy; annis 2013</p>
       </footer>
 
     </div> <!-- /container -->
