@@ -38,7 +38,9 @@ def serchmei
   end
 ######################################
 def serchhead
-
+	$date1 = params[:date1]+"000000"
+	$date2 = params[:date2]+"999999"
+	$salesday = params[:date1]+"〜"+params[:date2]
 end
 ######################################  
 def serchdayoutlet
