@@ -1,8 +1,9 @@
 class SalesheadsController < ApplicationController
+before_filter :authenticate_user!
   # GET /salesheads
   # GET /salesheads.json
   def index
-    @salesheads = Saleshead.all
+    @salesheads = current_user.salesheads.find(:all,:order => "billno DESC" )
     #@salesheads = Saleshead.where(:custno => 1001)
     respond_to do |format|
       format.html # index.html.erb
@@ -13,13 +14,40 @@ class SalesheadsController < ApplicationController
   # GET /salesheads/1
   # GET /salesheads/1.json
   def show
-    @saleshead = Saleshead.find(params[:id])
-
+   @salesheads = current_user.salesheads.find(:all, :conditions => ["Date like ?", params[:id]+"%"])
+   $salesday=params[:id]
+   
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @saleshead }
+      format.html # index.html.erb
+      format.json { render json: @salesheads }
     end
   end
+######################################
+def serchmei
+   @salesheads = current_user.salesheads.find(:all, :conditions => ["Date like ?", params[:id]+"%"])
+   #@Salesmei=Salesmei.find(:all,:conditions => { :billno => [@salesheads[0].billno ,@salesheads[1].billno]}) 
+   @salesbillno=[]
+   @salesheads.each do |saleshead|
+	   @salesbillno.push(saleshead.billno)
+   end
+   @Salesmei=current_user.salesmeis.find(:all,:conditions => { :billno => [@salesbillno]})
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @salesheads }
+    end
+  end
+######################################  
+def serchdayoutlet
+   @salesheads = current_user.salesheads.find(:all, :conditions => ["Date like ? and outlet = ?" , params[:id]+"%",params[:id2]])
+   $salesday=params[:id]
+   $outlet=params[:id2]
+   
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @salesheads }
+    end
+  end
+######################################  
 
   # GET /salesheads/new
   # GET /salesheads/new.json
@@ -41,7 +69,11 @@ class SalesheadsController < ApplicationController
   # POST /salesheads.json
   def create
     @saleshead = Saleshead.new(params[:saleshead])
-
+    if @saleshead.billno[0,1] == '3'
+    @saleshead.outlet = '002'
+    else
+    @saleshead.outlet = '003'
+    end
     respond_to do |format|
       if @saleshead.save
         format.html { redirect_to @saleshead, notice: 'Saleshead was successfully created.' }
