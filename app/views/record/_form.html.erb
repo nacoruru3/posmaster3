@@ -1,10 +1,10 @@
-<%= form_for(@abc) do |f| %>
-  <% if @abc.errors.any? %>
+<%= form_for(@zaiko) do |f| %>
+  <% if @zaiko.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@abc.errors.count, "error") %> prohibited this abc from being saved:</h2>
+      <h2><%= pluralize(@zaiko.errors.count, "error") %> prohibited this zaiko from being saved:</h2>
 
       <ul>
-      <% @abc.errors.full_messages.each do |msg| %>
+      <% @zaiko.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -16,16 +16,10 @@
     <%= f.text_field :code %>
   </div>
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
     <%= f.label :value %><br />
     <%= f.number_field :value %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
-  
-
 <% end %>
