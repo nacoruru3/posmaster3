@@ -31,8 +31,10 @@
           <a class="brand" href="/">Posmaster</a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
+<!--
               <li><%= link_to "帳票一覧", "/home/list"  %></li>
               <li><%= link_to "マスタメンテナンス", "/master"  %></li>
+-->
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -51,8 +53,12 @@
               <li><%= link_to '在庫一覧', zaikos_path ,{ :remote => true }  %></li>
               <li><%= link_to 'abc分析表',{ :controller => 'abcs' ,:action => 'index' ,:id => '99999999' } ,{ :remote => true } %></li>
               <br></br>
+              <% if user_signed_in? %>
               <li><%= link_to "ログアウト", destroy_user_session_path, :method => 'delete' %></li>
               <li><%= link_to "ユーザ情報の編集", edit_user_registration_path %></li>
+              <% else %>
+			  <li><%= link_to "ログイン", new_user_session_path %></li>
+			  <% end %>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
