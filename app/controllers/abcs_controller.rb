@@ -28,43 +28,21 @@ class AbcsController < ApplicationController
     end
    @abcs = current_user.abcs.all
 
-   #  respond_to do |format|
-#       format.html # index.html.erb
-#       format.json { render json: @abcs }
-#     end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @abcs }
+    end
   end
 
   # GET /abcs/1
   # GET /abcs/1.json
   def show
-	$date1 = params[:date1]+"000000"
-	$date2 = params[:date2]+"999999"
-	abcs = Abc.destroy_all(['user_id = ?',current_user.id])
-  	$date = params[:id]
-  	@items = current_user.items.all
-    @items.each do |item|
-    	sql = ["select * from salesmeis where itemcode = ? and to_number(trim(date),'99999999999999') >= to_number(trim(?),'99999999999999') and to_number(trim(date),'99999999999999') <= to_number(trim(?),'99999999999999')",item.code,$date1,$date2]
-    @salesmei = current_user.salesmeis.find_by_sql(sql)
-      
-      unless @salesmei.nil?
-      @abc = Abc.new
-       @abc.code = item.code
-       @abc.name = item.name
-       @abc.value = 0
-       @abc.user_id = current_user.id
-        @salesmei.each do |salesmei|
-         @abc.value = @abc.value + salesmei.value
-        end
-        if @abc.value != 0
-      	 @abc.save!
-        end
-      end    	
+    @abc = Abc.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @abc }
     end
-    @abcs = current_user.abcs.all
-    # respond_to do |format|
-#       format.html # show.html.erb
-#       format.json { render json: @abc }
-#     end
   end
 
   # GET /abcs/new
@@ -126,6 +104,4 @@ class AbcsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
-
 end

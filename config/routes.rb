@@ -31,8 +31,6 @@ Posmaster::Application.routes.draw do
 
   root :to => "home#index"
   get "home/index"
-  get "home/master" => "home#master"
-  get "home/index2" => "home#index2"
   #devise_for :users
   devise_for :users, :path_names => { :sign_up => "register" } 
   resources :currents
@@ -68,10 +66,6 @@ Posmaster::Application.routes.draw do
   get 'ctrl/act3/:id' => 'ctrl#act3'
   get 'salesheads/serchdayoutlet/:id/:id2' => 'salesheads#serchdayoutlet'
   get 'abcs/index/:id' => 'abcs#index'
-  get 'salesheads/serchhead/id1/id2' => 'salesheads#serchhead'
-  post 'abcs/show/:id1/:id2' => 'abcs#show'
-  get 'ctrl/act5/:id/:id2' => 'ctrl#act5'
-  get 'ctrl/act6/:id/:id2' => 'ctrl#act6'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
