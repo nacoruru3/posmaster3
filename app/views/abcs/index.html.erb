@@ -4,13 +4,7 @@
 <h1>abc分析表 全集計</h1>
 <% end %>
 
-<%= form_tag({ :action => 'show/id1/id2', :method => :post} ,{ :remote => true }) do %>
-期間指定<br>From:<%= text_field_tag "date1" ,params[:date1], :class => 'datepicker' %>
-To:<%= text_field_tag "date2" ,params[:date2], :class => 'datepicker' %>
-<%= submit_tag "集計" %></p>
-<% end %>
-<div id="result">
-  <table border="1">
+<table border="1">
   <tr>
     <th>Code</th>
     <th>Name</th>
@@ -31,5 +25,7 @@ To:<%= text_field_tag "date2" ,params[:date2], :class => 'datepicker' %>
   </tr>
 <% end %>
 </table>
-	
-</div>
+
+<br />
+
+<%= link_to 'New Abc', new_abc_path %>

@@ -31,8 +31,6 @@ Posmaster::Application.routes.draw do
 
   root :to => "home#index"
   get "home/index"
-  get "home/master" => "home#master"
-  get "home/index2" => "home#index2"
   #devise_for :users
   devise_for :users, :path_names => { :sign_up => "register" } 
   resources :currents
@@ -40,10 +38,8 @@ Posmaster::Application.routes.draw do
   post 'record/post' => 'record#post'
   post 'record/itempost' => 'record#itempost'
   post 'record/itempost2' => 'record#itempost2'
-  get  'record/list' => 'record#list'
+  get 'record/list' => 'record#list'
   post 'record/zaikopost' => 'record#zaikopost'
-  get  'record/zaikotranpost' => 'record#zaikotranpost'
-  post 'record/zaikotranhtml' => 'record#zaikotranhtml'
   get 'record/hasone' => 'record#hasone'
   get 'record/belongs' => 'record#belongs'
   post 'record/tokuipost' => 'record#tokuipost'
@@ -68,10 +64,6 @@ Posmaster::Application.routes.draw do
   get 'ctrl/act3/:id' => 'ctrl#act3'
   get 'salesheads/serchdayoutlet/:id/:id2' => 'salesheads#serchdayoutlet'
   get 'abcs/index/:id' => 'abcs#index'
-  get 'salesheads/serchhead/id1/id2' => 'salesheads#serchhead'
-  post 'abcs/show/:id1/:id2' => 'abcs#show'
-  get 'ctrl/act5/:id/:id2' => 'ctrl#act5'
-  get 'ctrl/act6/:id/:id2' => 'ctrl#act6'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
