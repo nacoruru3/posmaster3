@@ -48,7 +48,8 @@
             <ul class="nav nav-list">
               <li class="nav-header">メニュー一覧</li>
               <li><%= link_to '金種一覧', currents_path ,{ :remote => true } %></li>
-              <li><%= link_to 'アイテム一覧', items_path ,{ :remote => true }  %></li>
+<!--               <li><%= link_to 'アイテム一覧', items_path ,{ :remote => true }  %></li> -->
+              <li><%= link_to 'アイテム一覧', items_path %></li>
               <li><%= link_to '売上伝票', salesheads_path ,{ :remote => true }  %></li>
               <li><%= link_to '在庫一覧', zaikos_path ,{ :remote => true }  %></li>
               <li><%= link_to 'abc分析表',{ :controller => 'abcs' ,:action => 'index' ,:id => '99999999' } ,{ :remote => true } %></li>
