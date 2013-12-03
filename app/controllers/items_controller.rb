@@ -17,11 +17,11 @@ class ItemsController < ApplicationController
     #@items = Item.all
     sql = "SELECT items.code,items.cost,items.kban,items.name,items.price,items.price2,items.price3,items.price4,items.sho1bun,zaikos.value,items.id,items.user_id FROM items LEFT JOIN zaikos ON items.code = zaikos.code WHERE items.user_id=" + current_user.id.to_s
     @items = Item.find_by_sql(sql)
-    respond_to do |format|
-    
-      format.html # index.html.erb
-      format.json { render json: @items }
-    end
+    # respond_to do |format|
+#     
+#       format.html # index.html.erb
+#       format.json { render json: @items }
+#     end
   end
 
   # GET /items/1

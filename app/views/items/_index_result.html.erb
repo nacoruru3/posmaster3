@@ -1,0 +1,45 @@
+<div id="result">
+<%= link_to 'New Item', new_item_path, :class=>'btn btn-primary' %>
+</br>
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Code</th>
+    <th>Price</th>
+    <th>Price2</th>
+    <th>Price3</th>
+    <th>Price4</th>
+    <th>Cost</th>
+    <th>Zaiko</th>
+    <th>Sho1bun</th>
+    <th>Kban</th>
+    <th>User</th>
+    <th></th>
+  </tr>
+<% i=0 %>
+<% @items.each do |item| %>
+  <tr>
+    <td><%= link_to item.name, edit_item_path(item) %></td>
+    <td><%= item.code %></td>
+    <td><%= item.price %></td>
+    <td><%= item.price2 %></td>
+    <td><%= item.price3 %></td>
+    <td><%= item.price4 %></td>
+    <td><%= item.cost %></td>
+    <% unless item.value.nil? %>
+    <td><%= item.value %> </td>
+    <% else %>
+    <td> 0 </td>
+    <% end %>
+    <td><%= item.sho1bun %></td>
+    <td><%= item.kban %></td>
+    <td><%= item.user_id %></td>
+    <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% i=i+1 %>
+<% end %>
+</table>
+
+<br />
+</div>
+</ul>

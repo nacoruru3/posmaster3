@@ -5,12 +5,12 @@ before_filter :authenticate_user!
   def index
     #@zaikos = Zaiko.all
 
-    @Zaiko = Zaiko.find(:all,:include => [:item])
-     respond_to do |format|
-    
-      format.html # index.html.erb
-      format.json { render json: @items }
-    end
+    @Zaiko = current_user.zaikos.find(:all,:include => [:item])
+ #     respond_to do |format|
+#     
+#       format.html # index.html.erb
+#       format.json { render json: @items }
+#     end
 
   end
 

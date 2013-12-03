@@ -68,7 +68,7 @@ Posmaster::Application.routes.draw do
   get 'ctrl/act3/:id' => 'ctrl#act3'
   get 'salesheads/serchdayoutlet/:id/:id2' => 'salesheads#serchdayoutlet'
   get 'abcs/index/:id' => 'abcs#index'
-  get 'salesheads/serchhead/id1/id2' => 'salesheads#serchhead'
+  post 'salesheads/serchhead/:id1/:id2' => 'salesheads#serchhead'
   post 'abcs/show/:id1/:id2' => 'abcs#show'
   get 'ctrl/act5/:id/:id2' => 'ctrl#act5'
   get 'ctrl/act6/:id/:id2' => 'ctrl#act6'
