@@ -19,3 +19,12 @@
 $(document).ready(function(){
     $( ".datepicker" ).datepicker({dateFormat: 'yymmdd'});
 });
+
+/* Ajaxリクエストが開始されまだアクティブになっていない時に読込中メッセージを表示する */
+            $(document).ajaxStart(function(){
+               {$('#progress').html('通信中...')};
+            });
+/* Ajaxリクエスト終了時に読込中メッセージを非表示にする */
+           $(document).ajaxComplete(function(){
+               {$('#progress').html('')};
+            });
