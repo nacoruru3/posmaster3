@@ -1,0 +1,79 @@
+<ul>
+<table border="1">
+  <tr>
+    <th>Billno</th>
+    <th>Eda</th>
+    <th>Outlet</th>
+    <th>Price</th>
+    <th>Tax</th>
+    <th>Date</th>
+    <th>Custno</th>
+    <th>Currency1</th>
+    <th>Price1</th>
+    <th>Currency2</th>
+    <th>Price2</th>
+    <th>Currency3</th>
+    <th>Price3</th>
+    <th>Currency4</th>
+    <th>Price4</th>
+    <th>Change</th>
+    <th>Flg</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @salesheads.each do |saleshead| %>
+  <tr>
+    <td><%= link_to saleshead.billno, { :controller => 'salesmeis' ,:action => 'show' ,:id => saleshead.billno,:id2 => saleshead.outlet } %></td>
+    <td><%= saleshead.eda %></td>
+    <td><%= saleshead.outlet %></td>
+    <td align="right"><%= saleshead.price %>円</td>
+    <td align="right"><%= saleshead.tax %>円</td>
+    <td><%= link_to saleshead.date, { :controller => 'salesheads' ,:action => 'show' ,:id =>  saleshead.date[0,8] } %></td>
+    <% @tokui = current_user.tokuis.find(:first,:conditions => {:code => saleshead.custno}) %>
+    <% unless @tokui.nil? %>
+    <td><%= link_to @tokui.name, { :controller => 'record' ,:action => 'rireki' ,:id =>  saleshead.custno } %></td>
+    <% else %>
+    <td><%= link_to saleshead.custno, { :controller => 'record' ,:action => 'rireki' ,:id =>  saleshead.custno } %></td>
+     <% end %>
+    <% @currency1 = current_user.currents.find(:first,:conditions => {:code => saleshead.currency1}) %>
+    <% unless @currency1.nil? %>
+    <td><%= @currency1.name %></td>
+    <% else %>
+    <% if saleshead.currency1 == '1' %>
+    <td>現金</td>
+    <% else %>
+    <td><%= saleshead.currency1 %></td>
+    <% end %>
+    <% end %>
+    <td align="right"><%= saleshead.price1 %>円</td>
+    <% @currency2 = current_user.currents.find(:first,:conditions => {:code => saleshead.currency2}) %>
+    <% unless @currency2.nil? %>
+    <td><%= @currency2.name %></td>
+    <% else %>
+    <td><%= saleshead.currency2 %></td>
+    <% end %>
+    <td align="right"><%= saleshead.price2 %>円</td>
+    <% @currency3 = current_user.currents.find(:first,:conditions => {:code => saleshead.currency3}) %>
+    <% unless @currency3.nil? %>
+    <td><%= @currency3.name %></td>
+    <% else %>
+    <td><%= saleshead.currency3 %></td>
+    <% end %>
+    <td align="right"><%= saleshead.price3 %>円</td>
+    <% @currency4 = current_user.currents.find(:first,:conditions => {:code => saleshead.currency4}) %>
+    <% unless @currency4.nil? %>
+    <td><%= @currency4.name %></td>
+    <% else %>
+    <td><%= saleshead.currency4 %></td>
+    <% end %>
+    <td align="right"><%= saleshead.price4 %>円</td>
+    <td align="right"><%= saleshead.change %>円</td>
+    <td><%= saleshead.flg %></td>
+    <td><%= link_to 'Edit', edit_saleshead_path(saleshead) %></td>
+    <td><%= link_to 'Destroy', saleshead, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+</ul>

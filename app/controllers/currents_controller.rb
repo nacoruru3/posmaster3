@@ -1,16 +1,16 @@
 # coding: utf-8
 class CurrentsController < ApplicationController
 
-	#before_filter :authenticate_user!
+	before_filter :authenticate_user!
   # GET /currents
   # GET /currents.json
   def index
     @currents = current_user.currents.all
 
-    # respond_to do |format|
-#       format.html # index.html.erb
-#       format.json { render json: @currents }
-#     end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @currents }
+    end
   end
 
   # GET /currents/1
