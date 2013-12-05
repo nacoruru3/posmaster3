@@ -5,10 +5,10 @@ before_filter :authenticate_user!
   def index
     @salesheads = current_user.salesheads.find(:all,:order => "billno DESC" )
     #@salesheads = Saleshead.where(:custno => 1001)
-    # respond_to do |format|
-#       format.html # index.html.erb
-#       format.json { render json: @salesheads }
-#     end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @salesheads }
+    end
   end
 
   # GET /salesheads/1
@@ -30,6 +30,7 @@ def serchmei
    @salesheads.each do |saleshead|
 	   @salesbillno.push(saleshead.billno)
    end
+   $day = params[:id]
    @Salesmei=current_user.salesmeis.find(:all,:conditions => { :billno => [@salesbillno]})
     respond_to do |format|
       format.html # index.html.erb

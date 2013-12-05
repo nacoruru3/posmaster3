@@ -1,0 +1,29 @@
+<script type="text/javascript">
+$(function(){
+　$( ".datepicker" ).datepicker({dateFormat: 'yymmdd'});
+});
+</script>
+<ul>
+<%= form_tag({ :controller => 'abcs', :action => 'show/id1/id2', :method => :post} ,{ :remote => true }) do %>
+期間指定<br>From:<%= text_field_tag "date1" ,params[:date1], :class => 'datepicker' %>
+To:<%= text_field_tag "date2" ,params[:date2], :class => 'datepicker' %>
+<%= submit_tag "集計" %></p>
+<% end %>
+<div id="result">
+<table border="1">
+  <tr>
+    <th>Code</th>
+    <th>Name</th>
+    <th>Value</th>
+  </tr>
+
+<% @abcs.each do |abc| %>
+  <tr>
+    <td><%= abc.code %></td>
+    <td><%= abc.name %></td>
+    <td><%= abc.value %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+</ul>

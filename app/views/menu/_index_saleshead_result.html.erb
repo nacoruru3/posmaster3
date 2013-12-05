@@ -4,7 +4,7 @@ $(function(){
 });
 </script>
 <ul>
-<%= form_tag({ :action => 'serchhead/id1/id2', :method => :post} ,{ :remote => true }) do %>
+<%= form_tag({ :controller => 'salesheads' ,:action => 'serchhead/id1/id2', :method => :post} ,{ :remote => true }) do %>
 期間指定<br>From:<%= text_field_tag "date1" ,params[:date1], :class => 'datepicker' %>
 To:<%= text_field_tag "date2" ,params[:date2], :class => 'datepicker' %>
 <%= submit_tag "集計" %></p>

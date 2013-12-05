@@ -6,11 +6,11 @@ before_filter :authenticate_user!
     #@zaikos = Zaiko.all
 
     @Zaiko = current_user.zaikos.find(:all,:include => [:item])
- #     respond_to do |format|
-#     
-#       format.html # index.html.erb
-#       format.json { render json: @items }
-#     end
+     respond_to do |format|
+    
+      format.html # index.html.erb
+      format.json { render json: @items }
+    end
 
   end
 

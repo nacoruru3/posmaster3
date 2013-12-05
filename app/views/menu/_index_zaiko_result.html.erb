@@ -1,0 +1,36 @@
+<div id="result">
+<!-- <%= link_to 'New Zaiko', new_zaiko_path, :class=>'btn btn-primary' %> -->
+</br>
+<table border="1">
+  <tr>
+    <th>品名</th>
+    <th>原価</th>
+    <th>規格型番</th>
+    <th>在庫数</th>
+    <th>原価×在庫数</th>
+    <th></th>
+  </tr>
+<% @Zaiko.each do |zaiko| %>
+  <tr>
+    <% $item = current_user.items.find(:first,:conditions => {:code => zaiko.code}) %>
+    <% unless $item.nil? %>
+     <td><%= link_to $item.name, edit_zaiko_path(zaiko)%></td>
+     <td align="right"><%= $item.cost %>円</td>
+     <td><%= $item.kban %></td>
+<!--     <td><input type="text" style="text-align:right" value=<%= zaiko.value %>></td> -->
+	<td><%= zaiko.value %></td>
+     <td align="right"><%= $item.cost * zaiko.value %>円</td>
+    <% else %>
+     <td><%= link_to zaiko.code %></td>
+     <td align="right">0円</td>
+     <td></td>
+<!--      <td><input type="text" style="text-align:right" value=<%= zaiko.value %>></td> -->
+	 <td><%= zaiko.value %></td>
+     <td align="right">0円</td>
+    <% end %>
+    <td><%= link_to 'Destroy', zaiko, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+</ul>

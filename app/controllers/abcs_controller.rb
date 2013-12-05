@@ -28,10 +28,10 @@ class AbcsController < ApplicationController
     end
    @abcs = current_user.abcs.all
 
-   #  respond_to do |format|
-#       format.html # index.html.erb
-#       format.json { render json: @abcs }
-#     end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @abcs }
+    end
   end
 
   # GET /abcs/1

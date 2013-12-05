@@ -47,12 +47,14 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">メニュー一覧</li>
+              <li><%= link_to '売上伝票', { :controller => 'menu' ,:action => 'indexsaleshead' } ,{ :remote => true }  %></li>
+              <li><%= link_to '在庫一覧', { :controller => 'menu' ,:action => 'indexzaiko' } ,{ :remote => true }  %></li>
+              <li><%= link_to 'abc分析表',{ :controller => 'menu' ,:action => 'indexabc' ,:id => '99999999' } ,{ :remote => true } %></li>
+              <p></p>
+              <li><%= link_to '得意先一覧', { :controller => 'menu' ,:action => 'indextokuis' } ,{ :remote => true } %></li>
+              <li><%= link_to '分類1一覧', { :controller => 'menu' ,:action => 'indexsho1buns' } ,{ :remote => true } %></li>
               <li><%= link_to '金種一覧', { :controller => 'menu' ,:action => 'indexcurrents' } ,{ :remote => true } %></li>
-<!--               <li><%= link_to 'アイテム一覧', items_path ,{ :remote => true }  %></li> -->
               <li><%= link_to 'アイテム一覧', { :controller => 'menu' ,:action => 'indexitems' } ,{ :remote => true } %></li>
-              <li><%= link_to '売上伝票', salesheads_path ,{ :remote => true }  %></li>
-              <li><%= link_to '在庫一覧', zaikos_path ,{ :remote => true }  %></li>
-              <li><%= link_to 'abc分析表',{ :controller => 'abcs' ,:action => 'index' ,:id => '99999999' } ,{ :remote => true } %></li>
               <br></br>
               <% if user_signed_in? %>
               <li><%= link_to "ログアウト", destroy_user_session_path, :method => 'delete' %></li>
