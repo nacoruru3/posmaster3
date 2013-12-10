@@ -15,14 +15,15 @@ before_filter :authenticate_user!
     name = name.kconv(Kconv::SJIS, Kconv::UTF8)
     username = current_user.username
     outlet = params[:id]
-    sysday = params[:id2]
+    sysyear = params[:id2][0,4]
+    sysday = params[:id2][4,4]
     path = "public/docs/"
     FileUtils.mkdir_p("public/docs/#{username}/#{outlet}") unless File.exist?("/public/docs/#{username}/#{outlet}")
-    FileUtils.mkdir_p("public/docs/#{username}/#{outlet}/#{sysday}") unless File.exist?("/public/docs/#{username}/#{outlet}/#{sysday}")
+    FileUtils.mkdir_p("public/docs/#{username}/#{outlet}/#{sysyear}/#{sysday}") unless File.exist?("/public/docs/#{username}/#{outlet}/#{sysyear}/#{sysday}")
     #File.open("public/docs/#{name}", 'wb') { |f| f.write(file.read) }
     File.open("#{path}/#{username}/#{outlet}/#{name}", 'wb') { |f| f.write(file.read) }
     #File.open("#{path}/#{username}/#{outlet}/#{sysday}/#{name}", 'wb') { |f| f.write(file.read) }
-    FileUtils.cp("#{path}/#{username}/#{outlet}/#{name}", "#{path}/#{username}/#{outlet}/#{sysday}/#{name}")    # コピー
+    FileUtils.cp("#{path}/#{username}/#{outlet}/#{name}", "#{path}/#{username}/#{outlet}/#{sysyear}/#{sysday}/#{name}")    # コピー
     result = "#{name.toutf8}をアップロードしました。"
    #end
    render :text => result
@@ -52,15 +53,25 @@ before_filter :authenticate_user!
   def act5
   	username = current_user.username
   	outlet = params[:id]
-  	day = params[:id2]
-    send_file("public/docs/#{username}/#{outlet}/#{day}/DayEnd.txt")
+  	year = params[:id2][0,4]
+  	day = params[:id2][4,4]
+    send_file("public/docs/#{username}/#{outlet}/#{year}/#{day}/DayEnd.txt")
   end
   
   def act6
   	username = current_user.username
   	outlet = params[:id]
-  	day = params[:id2]
-    send_file("public/docs/#{username}/#{outlet}/#{day}/DayEndN.txt")
+  	year = params[:id2][0,4]
+  	day = params[:id2][4,4]
+    send_file("public/docs/#{username}/#{outlet}/#{year}/#{day}/DayEndN.txt")
+  end
+  
+  def act7
+  	username = current_user.username
+  	outlet = params[:id]
+  	year = params[:id2][0,4]
+  	day = params[:id2][4,4]
+    send_file("public/docs/#{username}/#{outlet}/#{year}/#{day}/order.db")
   end
   
   def upfile
