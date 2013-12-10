@@ -41,9 +41,10 @@ class AbcsController < ApplicationController
 	$date2 = params[:date2]+"999999"
 	abcs = Abc.destroy_all(['user_id = ?',current_user.id])
   	$date = params[:id]
+  	$userid = current.user.id
   	@items = current_user.items.all
     @items.each do |item|
-    	sql = ["select * from salesmeis where itemcode = ? and to_number(trim(date),'99999999999999') >= to_number(trim(?),'99999999999999') and to_number(trim(date),'99999999999999') <= to_number(trim(?),'99999999999999')",item.code,$date1,$date2]
+    	sql = ["select * from salesmeis where itemcode = ? and to_number(trim(date),'99999999999999') >= to_number(trim(?),'99999999999999') and to_number(trim(date),'99999999999999') <= to_number(trim(?),'99999999999999') and user_id =?",item.code,$date1,$date2,$userid]
     @salesmei = current_user.salesmeis.find_by_sql(sql)
       
       unless @salesmei.nil?

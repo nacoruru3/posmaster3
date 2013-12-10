@@ -41,8 +41,9 @@ def serchmei
 def serchhead
 	$date1 = params[:date1]+"000000"
 	$date2 = params[:date2]+"999999"
+	$userid = current_user.id
 	$salesday = params[:date1]+"~"+params[:date2]
-	sql = ["select * from salesheads where to_number(trim(date),'99999999999999') >= to_number(trim(?),'99999999999999') and to_number(trim(date),'99999999999999') <= to_number(trim(?),'99999999999999')",$date1,$date2]
+	sql = ["select * from salesheads where to_number(trim(date),'99999999999999') >= to_number(trim(?),'99999999999999') and to_number(trim(date),'99999999999999') <= to_number(trim(?),'99999999999999') and user_id = ?",$date1,$date2,$userid]
     @salesheads = current_user.salesheads.find_by_sql(sql)
 end
 ######################################  
