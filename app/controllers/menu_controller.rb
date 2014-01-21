@@ -38,7 +38,8 @@ class MenuController < ApplicationController
         end
       end    	
     end
-   @abcs = current_user.abcs.all
+#    @abcs = current_user.abcs.all
+	 @abcs = current_user.abcs.order(params[:sort])
 	end
 	
 	def indextokuis

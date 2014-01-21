@@ -14,7 +14,7 @@ To:<%= text_field_tag "date2" ,params[:date2], :class => 'datepicker' %>
   <tr>
     <th>Code</th>
     <th>Name</th>
-    <th>Value</th>
+    <th><%= link_to 'Value', { :controller => 'menu' ,:action => 'indexabc' ,:id => '99999999',:sort => 'value' } ,{ :remote => true }  %></th>
   </tr>
 
 <% @abcs.each do |abc| %>
