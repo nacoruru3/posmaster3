@@ -57,8 +57,18 @@ def serchdayoutlet
       format.json { render json: @salesheads }
     end
   end
-######################################  
-
+######################################
+def serchheaddayoutlet
+	$salesday = params[:id1]
+	$date1 = $salesday.slice(0..7)+"000000"
+	$date2 = $salesday.slice(9..-1)+"999999"
+	$outlet = params[:id2]
+	$userid = current_user.id
+	sql = ["select * from salesheads where to_number(trim(date),'99999999999999') >= to_number(trim(?),'99999999999999') and to_number(trim(date),'99999999999999') <= to_number(trim(?),'99999999999999') and user_id = ? and outlet = trim(?)",$date1,$date2,$userid,$outlet]
+    @salesheads = current_user.salesheads.find_by_sql(sql)
+	
+end  
+######################################
   # GET /salesheads/new
   # GET /salesheads/new.json
   def new

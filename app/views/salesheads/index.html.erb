@@ -26,7 +26,7 @@
 
 <% @salesheads.each do |saleshead| %>
   <tr>
-    <td><%= link_to saleshead.billno, { :controller => 'salesmeis' ,:action => 'show' ,:id => saleshead.billno,:id2 => saleshead.outlet } %></td>
+    <td><%= link_to saleshead.billno, { :controller => 'salesmeis' ,:action => 'showzaiko' ,:id => saleshead.billno,:id2 => saleshead.outlet } %></td>
     <td><%= saleshead.eda %></td>
     <td><%= saleshead.outlet %></td>
     <td align="right"><%= saleshead.price %>円</td>

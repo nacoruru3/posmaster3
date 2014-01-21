@@ -9,8 +9,6 @@
     <th>Itemprice</th>
     <th>Flg</th>
     <th>Zaiko</th>
-    <th></th>
-    <th></th>
   </tr>
 <% price = 0%>
 <% value = 0 %>
@@ -25,9 +23,7 @@
     <% price = (salesmei.itemprice.to_i * salesmei.salesmeisvalue.to_i) + price.to_i  %>
     <td><%= salesmei.flg %></td>
     <td><%= salesmei.zaikosvalue %></td>
-<!--    <td><%= link_to 'Show', salesmei %></td> -->
-    <td><%= link_to 'Edit', edit_salesmei_path(salesmei) %></td>
-    <td><%= link_to 'Destroy', salesmei, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
   </tr>
 <% end %>
 <td>合計</td>

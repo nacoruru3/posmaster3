@@ -1,5 +1,6 @@
-<ul>
-<h1><%= $salesday %></h1>
+<h1>Listing salesheads <%= $salesday %>/<%= $outlet %></h1>
+<CAPTION><%= link_to '当該日明細一覧', { :controller => 'salesheads' ,:action => 'serchmei' ,:id => $salesday } %></CAPTION>
+
 <table border="1">
   <tr>
     <th>Billno</th>
@@ -27,9 +28,9 @@
 <% cash = 0 %>
 <% @salesheads.each do |saleshead| %>
   <tr>
-    <td><%= link_to saleshead.billno, { :controller => 'salesmeis' ,:action => 'showzaiko' ,:id => saleshead.billno } %></td>
+    <td><%= link_to saleshead.billno, { :controller => 'salesmeis' ,:action => 'show' ,:id => saleshead.billno } %></td>
     <td><%= saleshead.eda %></td>
-    <td><%= link_to saleshead.outlet, { :controller => 'salesheads' ,:action => 'serchheaddayoutlet' ,:id1 => $salesday,:id2 => saleshead.outlet } %></td>
+    <td><%= saleshead.outlet %></td>
     <td align="right"><%= saleshead.price %>円</td>
     <% if saleshead.flg == true %>
     <% price = price + saleshead.price %>
@@ -99,4 +100,7 @@
 <td><%= price - cash %>円</td>
 </tr>
 </table>
-</ul>
+
+<br />
+
+<%= link_to 'New Saleshead', new_saleshead_path %>

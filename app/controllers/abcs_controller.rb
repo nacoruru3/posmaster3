@@ -26,7 +26,8 @@ class AbcsController < ApplicationController
         end
       end    	
     end
-   @abcs = current_user.abcs.all
+#    @abcs = current_user.abcs.all
+   @abcs = current_user.abcs.find(:all, :order => "value DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,7 +42,7 @@ class AbcsController < ApplicationController
 	$date2 = params[:date2]+"999999"
 	abcs = Abc.destroy_all(['user_id = ?',current_user.id])
   	$date = params[:id]
-  	$userid = current.user.id
+  	$userid = current_user.id
   	@items = current_user.items.all
     @items.each do |item|
     	sql = ["select * from salesmeis where itemcode = ? and to_number(trim(date),'99999999999999') >= to_number(trim(?),'99999999999999') and to_number(trim(date),'99999999999999') <= to_number(trim(?),'99999999999999') and user_id =?",item.code,$date1,$date2,$userid]
