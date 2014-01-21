@@ -62,7 +62,8 @@ class AbcsController < ApplicationController
         end
       end    	
     end
-    @abcs = current_user.abcs.all
+#     @abcs = current_user.abcs.all
+	@abcs = current_user.abcs.order("value DESC")
     # respond_to do |format|
 #       format.html # show.html.erb
 #       format.json { render json: @abc }
