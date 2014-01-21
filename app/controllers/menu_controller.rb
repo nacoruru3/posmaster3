@@ -39,7 +39,8 @@ class MenuController < ApplicationController
       end    	
     end
 #    @abcs = current_user.abcs.all
-	 @abcs = current_user.abcs.order(params[:sort])
+     $sort = params[:sort]
+	 @abcs = current_user.abcs.order("value DESC")
 	end
 	
 	def indextokuis
