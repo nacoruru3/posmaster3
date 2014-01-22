@@ -15,32 +15,52 @@ class MenuController < ApplicationController
 	end
 	
 	def indexabc
-		abcs = Abc.destroy_all(['user_id = ?',current_user.id])
-  	$date = params[:id]
-  	@items = current_user.items.all
-    @items.each do |item|
-    if params[:id] == '99999999'
-      @salesmei = current_user.salesmeis.find(:all,:conditions => ["itemcode = ? and flg = ?", item.code ,'true'])
+# 	abcs = Abc.destroy_all(['user_id = ?',current_user.id])
+	unless params[:sort].nil? 
+	  @sort = params[:sort]
+	else
+	  @sort = 'value'
+	end
+	if @sort  == session[:sort]
+      if session[:direction] == 'asc'
+       @direction = 'desc'
+      else
+       @direction = 'asc'
+      end
     else
-      @salesmei = current_user.salesmeis.find(:all,:conditions => ["itemcode = ? and flg = ? and Date like ?", item.code ,'true',params[:id]+"%"])
+      @direction = 'asc'
     end
-      unless @salesmei.nil?
-      @abc = Abc.new
-       @abc.code = item.code
-       @abc.name = item.name
-       @abc.value = 0
-       @abc.user_id = current_user.id
-        @salesmei.each do |salesmei|
-         @abc.value = @abc.value + salesmei.value
-        end
-        if @abc.value != 0
-      	 @abc.save!
-        end
-      end    	
-    end
-#    @abcs = current_user.abcs.all
-     $sort = params[:sort]
-	 @abcs = current_user.abcs.order("value DESC")
+     if params[:id] == '99999999'
+      @abcs = current_user.abcs.order(@sort+' '+@direction)
+     else
+       abcs = Abc.destroy_all(['user_id = ?',current_user.id])
+  	   $date = params[:id]
+  	   @items = current_user.items.all
+       @items.each do |item|
+    # if params[:id] == '99999999'
+       @salesmei = current_user.salesmeis.find(:all,:conditions => ["itemcode = ? and flg = ?", item.code ,'true'])
+    # else
+#       @salesmei = current_user.salesmeis.find(:all,:conditions => ["itemcode = ? and flg = ? and Date like ?", item.code ,'true',params[:id]+"%"])
+#     end
+       unless @salesmei.nil?
+        @abc = Abc.new
+        @abc.code = item.code
+        @abc.name = item.name
+        @abc.value = 0
+        @abc.user_id = current_user.id
+         @salesmei.each do |salesmei|
+          @abc.value = @abc.value + salesmei.value
+         end
+         if @abc.value != 0
+       	 @abc.save!
+         end
+       end    	
+     end
+#     @abcs = current_user.abcs.all
+	  @abcs = current_user.abcs.order(@sort+' '+@direction)
+	 end 
+	 session[:sort] = @sort
+     session[:direction] = @direction
 	end
 	
 	def indextokuis

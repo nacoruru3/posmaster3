@@ -12,9 +12,17 @@ To:<%= text_field_tag "date2" ,params[:date2], :class => 'datepicker' %>
 <div id="result">
 <table border="1">
   <tr>
-    <th>Code</th>
+    <th><%= link_to 'Code', { :controller => 'menu' ,:action => 'indexabc' ,:id => '99999999',:sort => 'code' } ,{ :remote => true }  %>
+      <% if @sort == "code" %>
+       <i class="icon-arrow-<%= @direction=='desc' ? 'down' : 'up'%>"></i>
+      <% end %>
+    </th>
     <th>Name</th>
-    <th><%= link_to 'Value', { :controller => 'menu' ,:action => 'indexabc' ,:id => '99999999',:sort => 'value' } ,{ :remote => true }  %></th>
+    <th><%= link_to 'Value', { :controller => 'menu' ,:action => 'indexabc' ,:id => '99999999',:sort => 'value' } ,{ :remote => true }  %>
+      <% if @sort == "value" %>
+       <i class="icon-arrow-<%= @direction=='desc' ? 'down' : 'up'%>"></i>
+      <% end %>
+    </th>
   </tr>
 
 <% @abcs.each do |abc| %>
