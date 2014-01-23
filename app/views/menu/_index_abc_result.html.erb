@@ -12,17 +12,49 @@ To:<%= text_field_tag "date2" ,params[:date2], :class => 'datepicker' %>
 <div id="result">
 <table border="1">
   <tr>
-    <th><%= link_to 'Code', { :controller => 'menu' ,:action => 'indexabc' ,:id => '99999999',:sort => 'code' } ,{ :remote => true }  %>
+  <% if @sort == "code" %>
+    <th id = "abc">
+  <% else %>
+   <th>
+  <% end %>
+    <u><%= link_to 'Code', { :controller => 'menu' ,:action => 'indexabc' ,:id => '99999999',:sort => 'code' } ,{ :remote => true }  %></u>
       <% if @sort == "code" %>
        <i class="icon-arrow-<%= @direction=='desc' ? 'down' : 'up'%>"></i>
       <% end %>
-    </th>
-    <th>Name</th>
-    <th><%= link_to 'Value', { :controller => 'menu' ,:action => 'indexabc' ,:id => '99999999',:sort => 'value' } ,{ :remote => true }  %>
+    </abc></th>
+    <th>名称</th>
+    <% if @sort == "value" %>
+      <th id = "abc">
+    <% else %>
+      <th>
+    <% end %>
+    <u><%= link_to '販売数', { :controller => 'menu' ,:action => 'indexabc' ,:id => '99999999',:sort => 'value' } ,{ :remote => true }  %></u>
       <% if @sort == "value" %>
        <i class="icon-arrow-<%= @direction=='desc' ? 'down' : 'up'%>"></i>
       <% end %>
     </th>
+    <% if @sort == "zaiko" %>
+      <th id = "abc">
+    <% else %>
+      <th>
+    <% end %>
+    <u><%= link_to '在庫', { :controller => 'menu' ,:action => 'indexabc' ,:id => '99999999',:sort => 'zaiko' } ,{ :remote => true }  %></u>
+      <% if @sort == "zaiko" %>
+       <i class="icon-arrow-<%= @direction=='desc' ? 'down' : 'up'%>"></i>
+      <% end %>
+    </th>
+    </th>
+    <% if @sort == "price" %>
+      <th id = "abc">
+    <% else %>
+      <th>
+    <% end %>
+    <u><%= link_to '上代', { :controller => 'menu' ,:action => 'indexabc' ,:id => '99999999',:sort => 'price' } ,{ :remote => true }  %></u>
+      <% if @sort == "price" %>
+       <i class="icon-arrow-<%= @direction=='desc' ? 'down' : 'up'%>"></i>
+      <% end %>
+    </th>
+    <th>標準原価</th>
   </tr>
 
 <% @abcs.each do |abc| %>
@@ -30,6 +62,9 @@ To:<%= text_field_tag "date2" ,params[:date2], :class => 'datepicker' %>
     <td><%= abc.code %></td>
     <td><%= abc.name %></td>
     <td><%= abc.value %></td>
+    <td><%= abc.zaiko %></td>
+    <td><%= abc.price %></td>
+    <td><%= abc.cost %></td>
   </tr>
 <% end %>
 </table>

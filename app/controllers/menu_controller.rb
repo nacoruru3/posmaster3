@@ -35,7 +35,9 @@ class MenuController < ApplicationController
      else
        abcs = Abc.destroy_all(['user_id = ?',current_user.id])
   	   $date = params[:id]
-  	   @items = current_user.items.all
+#   	   @items = current_user.items.all
+	   sql = "SELECT items.code,items.cost,items.kban,items.name,items.price,items.price2,items.price3,items.price4,items.sho1bun,zaikos.value,items.id,items.user_id FROM items LEFT JOIN zaikos ON items.code = zaikos.code WHERE items.user_id=" + current_user.id.to_s
+	   @items = current_user.items.find_by_sql(sql)
        @items.each do |item|
     # if params[:id] == '99999999'
        @salesmei = current_user.salesmeis.find(:all,:conditions => ["itemcode = ? and flg = ?", item.code ,'true'])
@@ -47,6 +49,13 @@ class MenuController < ApplicationController
         @abc.code = item.code
         @abc.name = item.name
         @abc.value = 0
+        @abc.cost = item.cost
+        @abc.price = item.price
+        unless item.value.nil?
+         @abc.zaiko = item.value
+        else
+         @abc.zaiko = 0
+        end
         @abc.user_id = current_user.id
          @salesmei.each do |salesmei|
           @abc.value = @abc.value + salesmei.value
