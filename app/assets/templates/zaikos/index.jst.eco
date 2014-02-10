@@ -1,0 +1,25 @@
+<style type="text/css">
+    .tb { border:1px solid #ccc; border-spacing:0; border-collapse:collapse; }
+    .tb th { border:1px solid #ccc; background-color:#eee; }
+    .tb td { border:1px solid #ccc; }
+    .tb caption { font-weight:bold; color:darkorange; }
+    .tb .tbcl { text-align:left; }
+    .tb .tbcc { text-align:center; }
+    .tb .tbcr { text-align:right; }
+</style>
+<h1>在庫一覧</h1>
+<table class = "tb" id = "tb" >
+<thead>
+  <tr>
+  	<th>コード</th>
+    <th>品名</th>
+    <th>原価</th>
+    <th>規格型番</th>
+    <th>在庫数</th>
+    <th>原価×在庫数</th>
+    <th></th>
+  </tr>
+</thead>
+<tbody id="zaikos">
+</tbody>
+</table>

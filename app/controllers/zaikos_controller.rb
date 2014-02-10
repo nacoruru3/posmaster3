@@ -5,11 +5,14 @@ before_filter :authenticate_user!
   def index
     #@zaikos = Zaiko.all
 
-    @Zaiko = current_user.zaikos.find(:all,:include => [:item])
+    #@zaikos = current_user.zaikos.find(:all,:include => [:item])
+    sql = "SELECT zaikos.id,zaikos.code,zaikos.value,items.cost,items.kban,items.name FROM zaikos LEFT JOIN items ON zaikos.code = items.code WHERE zaikos.user_id=" + current_user.id.to_s
+    @zaikos = current_user.zaikos.find_by_sql(sql)
+	
      respond_to do |format|
     
       format.html # index.html.erb
-      format.json { render json: @items }
+      format.json { render json: @zaikos }
     end
 
   end
@@ -61,18 +64,14 @@ before_filter :authenticate_user!
   # PUT /zaikos/1.json
   def update
     @zaiko = Zaiko.find(params[:id])
+    @zaiko.value = params[:zaiko][:value] 
+ 	@zaiko.save!
 
     respond_to do |format|
-      if @zaiko.update_attributes(params[:zaiko])
-        #format.html { redirect_to @zaiko, notice: 'Zaiko was successfully updated.' }
-        @Zaiko=Zaiko.find(:all,:include => [:item])
+        @zaikos=Zaiko.find(:all,:include => [:item])
         format.html { redirect_to zaikos_url }
         format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @zaiko.errors, status: :unprocessable_entity }
-      end
-    end
+   end
   end
 
   # DELETE /zaikos/1

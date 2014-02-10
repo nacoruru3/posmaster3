@@ -9,7 +9,7 @@
     <th>原価×在庫数</th>
     <th></th>
   </tr>
-<% @Zaiko.each do |zaiko| %>
+<% @zaikos.each do |zaiko| %>
   <tr>
     <% $item = current_user.items.find(:first,:conditions => {:code => zaiko.code}) %>
     <% unless $item.nil? %>

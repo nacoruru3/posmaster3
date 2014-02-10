@@ -8,6 +8,7 @@ class MenuController < ApplicationController
 	def indexitems
 		sql = "SELECT items.code,items.cost,items.kban,items.name,items.price,items.price2,items.price3,items.price4,items.sho1bun,zaikos.value,items.id,items.user_id FROM items LEFT JOIN zaikos ON items.code = zaikos.code WHERE items.user_id=" + current_user.id.to_s
 		@items = current_user.items.find_by_sql(sql)
+		p @items
 	end
 	
 	def indexsaleshead
@@ -81,6 +82,9 @@ class MenuController < ApplicationController
 	end
 	
 	def indexzaiko
-		@Zaiko = current_user.zaikos.find(:all,:include => [:item])
+		#@Zaiko = current_user.zaikos.find(:all,:include => [:item])
+		sql = "SELECT zaikos.value,zaikos.code,items.cost,items.kban,items.name,items.price,items.price2,items.price3,items.price4,items.sho1bun,items.id,items.user_id FROM zaikos LEFT JOIN items ON zaikos.code = items.code WHERE zaikos.user_id=" + current_user.id.to_s
+		@zaikos = current_user.zaikos.find_by_sql(sql)
 	end
+	
 end
