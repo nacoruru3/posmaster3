@@ -21,7 +21,7 @@ class Posmaster.Views.Zaiko extends Backbone.View
       
   destroyZaiko: (event) ->
     if confirm '削除していいですか？'
-      #@model.destroy()
+      @model.destroy()
       console.log $(event.target)
       console.log $(event.target).parent().parent()
       id = $(event.target).data('id')
