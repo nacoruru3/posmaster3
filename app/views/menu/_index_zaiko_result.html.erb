@@ -3,6 +3,7 @@
 </br>
 <table border="1">
   <tr>
+  	<th>コード </th>
     <th>品名</th>
     <th>原価</th>
     <th>規格型番</th>
@@ -12,16 +13,17 @@
   </tr>
 <% @Zaiko.each do |zaiko| %>
   <tr>
+  	<td><u><%= link_to zaiko.code %></u></td>
     <% $item = current_user.items.find(:first,:conditions => {:code => zaiko.code}) %>
     <% unless $item.nil? %>
-     <td><%= link_to $item.name, edit_zaiko_path(zaiko)%></td>
+     <td><%= $item.name %></td>
      <td align="right"><%= $item.cost %>円</td>
      <td><%= $item.kban %></td>
 <!--     <td><input type="text" style="text-align:right" value=<%= zaiko.value %>></td> -->
-	<td><%= zaiko.value %></td>
+	 <td><%= zaiko.value %></td>
      <td align="right"><%= $item.cost * zaiko.value %>円</td>
     <% else %>
-     <td><%= link_to zaiko.code %></td>
+     <td></td>
      <td align="right">0円</td>
      <td></td>
 <!--      <td><input type="text" style="text-align:right" value=<%= zaiko.value %>></td> -->
