@@ -75,6 +75,8 @@ Posmaster::Application.routes.draw do
   get 'ctrl/act5/:id/:id2' => 'ctrl#act5'
   get 'ctrl/act6/:id/:id2' => 'ctrl#act6'
   get 'ctrl/act7/:id/:id2' => 'ctrl#act7'
+  get 'sort/sortabc/' => 'sort#sortabc'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

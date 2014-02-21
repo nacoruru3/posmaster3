@@ -43,23 +43,32 @@ class AbcsController < ApplicationController
 	abcs = Abc.destroy_all(['user_id = ?',current_user.id])
   	$date = params[:id]
   	$userid = current_user.id
-  	@items = current_user.items.all
+  	#@items = current_user.items.all
+  	sql = "SELECT items.code,items.cost,items.kban,items.name,items.price,items.price2,items.price3,items.price4,items.sho1bun,zaikos.value,items.id,items.user_id FROM items LEFT JOIN zaikos ON items.code = zaikos.code WHERE items.user_id=" + current_user.id.to_s
+	@items = current_user.items.find_by_sql(sql)
     @items.each do |item|
-    	sql = ["select * from salesmeis where itemcode = ? and to_number(trim(date),'99999999999999') >= to_number(trim(?),'99999999999999') and to_number(trim(date),'99999999999999') <= to_number(trim(?),'99999999999999') and user_id =?",item.code,$date1,$date2,$userid]
+    sql = ["select * from salesmeis where itemcode = ? and to_number(trim(date),'99999999999999') >= to_number(trim(?),'99999999999999') and to_number(trim(date),'99999999999999') <= to_number(trim(?),'99999999999999') and user_id =?",item.code,$date1,$date2,$userid]
     @salesmei = current_user.salesmeis.find_by_sql(sql)
       
       unless @salesmei.nil?
-      @abc = Abc.new
-       @abc.code = item.code
-       @abc.name = item.name
-       @abc.value = 0
-       @abc.user_id = current_user.id
-        @salesmei.each do |salesmei|
-         @abc.value = @abc.value + salesmei.value
+        @abc = Abc.new
+        @abc.code = item.code
+        @abc.name = item.name
+        @abc.value = 0
+        @abc.cost = item.cost
+        @abc.price = item.price
+        unless item.value.nil?
+         @abc.zaiko = item.value
+        else
+         @abc.zaiko = 0
         end
-        if @abc.value != 0
-      	 @abc.save!
-        end
+        @abc.user_id = current_user.id
+         @salesmei.each do |salesmei|
+          @abc.value = @abc.value + salesmei.value
+         end
+         if @abc.value != 0
+       	 @abc.save!
+         end
       end    	
     end
 #     @abcs = current_user.abcs.all
@@ -129,6 +138,29 @@ class AbcsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  	def sort
+  	 	
+	  	unless params[:sort].nil? 
+		  @sort = params[:sort]
+		else
+		  @sort = 'value'
+		end
+		if @sort  == session[:sort]
+	      if session[:direction] == 'asc'
+	       @direction = 'desc'
+	      else
+	       @direction = 'asc'
+	      end
+	    else
+	      @direction = 'asc'
+	    end
+  		
+  		 @abcs = current_user.abcs.order(@sort+' '+@direction)
+  		 session[:sort] = @sort
+  		 session[:direction] = @direction
+		
+	end
   
 
 end

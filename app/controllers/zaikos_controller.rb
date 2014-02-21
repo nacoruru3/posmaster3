@@ -6,7 +6,7 @@ before_filter :authenticate_user!
     #@zaikos = Zaiko.all
 
     #@zaikos = current_user.zaikos.find(:all,:include => [:item])
-    sql = "SELECT zaikos.id,zaikos.code,zaikos.value,items.cost,items.kban,items.name FROM zaikos LEFT JOIN items ON zaikos.code = items.code WHERE zaikos.user_id=" + current_user.id.to_s
+    sql = "SELECT zaikos.id,zaikos.code,zaikos.value,zaikos.updated_at,items.cost,items.kban,items.name FROM zaikos LEFT JOIN items ON zaikos.code = items.code WHERE zaikos.user_id=" + current_user.id.to_s + " ORDER BY zaikos.updated_at DESC"
     @zaikos = current_user.zaikos.find_by_sql(sql)
 	
      respond_to do |format|

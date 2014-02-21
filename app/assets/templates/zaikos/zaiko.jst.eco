@@ -13,6 +13,8 @@
 </td>
 <% $valuezaiko = @zaiko.get('cost') * @zaiko.get('value') %>
 <td style="text-align:right" ><%= $valuezaiko %>円</td>
+<% zaiko = @zaiko.get('updated_at') %>
+<td><%= zaiko[0..9] %></td>
 <td>
 <button class="zaiko_destroy" data-id="<%= @zaiko.get('id')%>">削除</button>
 </td>

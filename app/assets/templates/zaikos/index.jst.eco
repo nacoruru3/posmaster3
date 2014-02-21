@@ -15,8 +15,35 @@
     <th>品名</th>
     <th>原価</th>
     <th>規格型番</th>
-    <th>在庫数</th>
+    <th>
+    <% if @updown == "up": %>
+    <a class="zaiko_value" data-id="valueup">在庫数</a>
+    <% else: %>
+    <a class="zaiko_value" data-id="valuedown">在庫数</a>
+    <% end %>
+    <% if @sortclum == "value": %>
+    <% if @updown=="up": %>
+    <i class="icon-arrow-up"></i>
+    <% else if @updown == "down": %>
+    <i class="icon-arrow-down"></i>
+    <% end %>
+    <% end %>
+    </th>
     <th>原価×在庫数</th>
+    <th>
+    <% if @updown == "up": %>
+    <a class="zaiko_update" data-id="updateup">最終更新日</a>
+    <% else: %>
+    <a class="zaiko_update" data-id="updatedown">最終更新日</a>
+    <% end %>
+    <% if @sortclum == "update": %>
+    <% if @updown=="up": %>
+    <i class="icon-arrow-up"></i>
+    <% else if @updown == "down": %>
+    <i class="icon-arrow-up"></i>
+    <% end %>
+    <% end %>
+    </th>
     <th></th>
   </tr>
 </thead>

@@ -8,7 +8,7 @@ class MenuController < ApplicationController
 	def indexitems
 		sql = "SELECT items.code,items.cost,items.kban,items.name,items.price,items.price2,items.price3,items.price4,items.sho1bun,zaikos.value,items.id,items.user_id FROM items LEFT JOIN zaikos ON items.code = zaikos.code WHERE items.user_id=" + current_user.id.to_s
 		@items = current_user.items.find_by_sql(sql)
-		p @items
+# 		p @items
 	end
 	
 	def indexsaleshead
@@ -64,7 +64,7 @@ class MenuController < ApplicationController
          if @abc.value != 0
        	 @abc.save!
          end
-       end    	
+       end
      end
 #     @abcs = current_user.abcs.all
 	  @abcs = current_user.abcs.order(@sort+' '+@direction)
