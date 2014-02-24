@@ -33,7 +33,7 @@ before_filter :authenticate_user!
   # GET /salesmeis/1.json
 #    @Salesmei = current_user.salesmeis.find(:all,:conditions => ["billno = ? and outlet = ?", params[:id] ,params[:id2]])
 	# sql = ["SELECT salesmeis.billno,salesmeis.itemcode,salesmeis.itemname,salesmeis.value,salesmeis.itemprice,salesmeis.flg,zaikos.value FROM salesmeis LEFT JOIN zaikos ON salesmeis.itemcode = zaikos.code WHERE billno = ? and outlet = ? and salesmeis.user_id = ?" ,params[:id],params[:id2],$userid]
-	sql = ["SELECT salesmeis.billno,salesmeis.itemcode,salesmeis.itemname,salesmeis.itemprice,salesmeis.flg,salesmeis.value as salesmeisvalue,zaikos.value as zaikosvalue FROM salesmeis LEFT JOIN zaikos ON salesmeis.itemcode = zaikos.code WHERE billno = ? and outlet = ? and salesmeis.user_id = ? ORDER_BY salesmeis.id ASC" ,params[:id],params[:id2],$userid]
+	sql = ["SELECT salesmeis.billno,salesmeis.itemcode,salesmeis.itemname,salesmeis.itemprice,salesmeis.flg,salesmeis.value as salesmeisvalue,zaikos.value as zaikosvalue FROM salesmeis LEFT JOIN zaikos ON salesmeis.itemcode = zaikos.code WHERE billno = ? and outlet = ? and salesmeis.user_id = ? ORDER BY salesmeis.id" ,params[:id],params[:id2],$userid]
  	@Salesmei = current_user.salesmeis.find_by_sql(sql)
 	
     respond_to do |format|
