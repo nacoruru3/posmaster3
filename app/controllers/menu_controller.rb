@@ -82,9 +82,9 @@ class MenuController < ApplicationController
 	end
 	
 	def indexzaiko
-		#@Zaiko = current_user.zaikos.find(:all,:include => [:item])
+		@zaiko = current_user.zaikos.find(:all,:include => [:item])
 		sql = "SELECT zaikos.value,zaikos.code,items.cost,items.kban,items.name,items.price,items.price2,items.price3,items.price4,items.sho1bun,items.id,items.user_id FROM zaikos LEFT JOIN items ON zaikos.code = items.code WHERE zaikos.user_id=" + current_user.id.to_s
-		@zaikos = current_user.zaikos.find_by_sql(sql)
+		#@zaikos = current_user.zaikos.find_by_sql(sql)
 	end
 	
 end
