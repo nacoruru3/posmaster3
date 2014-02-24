@@ -22,7 +22,11 @@
     <td align="right"><%= salesmei.itemprice %>円</td>
     <% price = (salesmei.itemprice.to_i * salesmei.salesmeisvalue.to_i) + price.to_i  %>
     <td><%= salesmei.flg %></td>
+    <% unless salesmei.zaikosvalue.nil? %>
     <td><%= salesmei.zaikosvalue %></td>
+    <% else %>
+    <td>0</td>
+    <% end %>
 
   </tr>
 <% end %>
