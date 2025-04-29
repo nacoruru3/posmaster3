@@ -6,7 +6,7 @@ gem 'rails', '3.2.9'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-gem 'sqlite3'
+gem 'sqlite3', '~> 1.3.13'
 gem 'devise'
 
 # Gems used only for assets and not required
@@ -26,7 +26,7 @@ gem 'jquery-ui-rails'
 gem "twitter-bootstrap-rails"
 gem 'execjs'
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-gem 'backbone-on-rails'
+# gem 'backbone-on-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
